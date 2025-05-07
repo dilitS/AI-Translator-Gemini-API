@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Get DOM elements
     const elements = {
         apiKeyInput: document.getElementById('aiGeminiTranslator_api-key-input'),
+        recentTranslationsList: document.getElementById('aiGeminiTranslator_recent-translations-list'), // Add this line
         saveApiKeyButton: document.getElementById('aiGeminiTranslator_save-api-key-button'),
         textToTranslateTextarea: document.getElementById('aiGeminiTranslator_text-to-translate'),
         translatedTextTextarea: document.getElementById('aiGeminiTranslator_translated-text'),
@@ -72,6 +73,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     elements.textTargetLanguageSelect.value = textTargetLanguage || config.DEFAULT_TARGET_LANGUAGE;
     elements.selectedTextLanguageSelect.value = selectedTextLanguage || 'English';
+
+    // Focus on the text area when the popup opens
+    elements.textToTranslateTextarea.focus();
 
     // Event listeners
     elements.settingsCollapseButton.addEventListener('click', (e) => {
@@ -155,9 +159,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     elements.selectedTextLanguageSelect.addEventListener('change', async () => {
         const newValue = elements.selectedTextLanguageSelect.value;
         await chrome.storage.local.set({ selectedTextLanguage: newValue });
-        
+
         // Zaktualizuj widok selecta
         initializeSelects();
+    });
+
+    // Add event listener for translate button to save translation
+    elements.translateTextButton.addEventListener('click', async () => {
+        await translateText();
+        await saveTranslation(); // Save the translation after successful translation
+        await loadAndDisplayRecentTranslations(); // Refresh the list
+    });
+
+    // Add event listener for Enter key in textarea to save translation
+    elements.textToTranslateTextarea.addEventListener('keypress', async (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            await translateText();
+            await saveTranslation(); // Save the translation after successful translation
+            await loadAndDisplayRecentTranslations(); // Refresh the list
+        }
     });
 
     chrome.storage.onChanged.addListener((changes, areaName) => {
@@ -236,6 +257,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         updateTranslationStatus('TRANSLATION_IN_PROGRESS_MESSAGE', 'yellow');
         elements.translatedTextTextarea.value = '';
+        elements.translateTextButton.disabled = true; // Disable button while translating
+        elements.translateTextButton.textContent = chrome.i18n.getMessage('TRANSLATING_BUTTON_TEXT'); // Change button text
 
         try {
             const response = await fetch(`${API_URL}?key=${apiKey}`, {
@@ -261,6 +284,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         } catch (error) {
             handleError(error, 'translateText');
+        } finally {
+            elements.translateTextButton.disabled = false; // Re-enable button
+            elements.translateTextButton.textContent = chrome.i18n.getMessage('TRANSLATE_TEXT_BUTTON_TEXT'); // Restore button text
         }
     }
 
@@ -292,6 +318,156 @@ document.addEventListener('DOMContentLoaded', async () => {
             tooltip.classList.remove('visible');
         }, 2000);
     }
+
+    // Function to save a translation
+    async function saveTranslation() {
+        const originalText = elements.textToTranslateTextarea.value.trim();
+        const translatedText = elements.translatedTextTextarea.value.trim();
+
+        if (!originalText || !translatedText) return;
+
+        const newTranslation = {
+            id: Date.now(), // Simple unique ID
+            originalText: originalText,
+            translatedText: translatedText,
+            timestamp: new Date().toISOString(),
+            starred: false,
+            title: ''
+        };
+
+        const { recentTranslations = [] } = await chrome.storage.local.get('recentTranslations');
+        recentTranslations.unshift(newTranslation); // Add to the beginning of the array
+
+        // Limit the number of translations if needed (optional, but good practice)
+        // const maxTranslations = 50; // Example limit
+        // if (recentTranslations.length > maxTranslations) {
+        //     recentTranslations = recentTranslations.slice(0, maxTranslations);
+        // }
+
+        await chrome.storage.local.set({ recentTranslations });
+    }
+
+    // Function to load and display recent translations
+    async function loadAndDisplayRecentTranslations() {
+        const { recentTranslations = [] } = await chrome.storage.local.get('recentTranslations');
+        const now = Date.now();
+        const sevenDaysInMillis = 7 * 24 * 60 * 60 * 1000;
+
+        // Filter out old translations that are not starred
+        const filteredTranslations = recentTranslations.filter(translation => {
+            if (translation.starred) return true;
+            const translationTimestamp = new Date(translation.timestamp).getTime();
+            return (now - translationTimestamp) <= sevenDaysInMillis;
+        });
+
+        // Update storage with filtered translations
+        await chrome.storage.local.set({ recentTranslations: filteredTranslations });
+
+        renderRecentTranslations(filteredTranslations);
+    }
+
+    // Function to render recent translations in the list
+    function renderRecentTranslations(translations) {
+        elements.recentTranslationsList.innerHTML = ''; // Clear current list
+
+        if (translations.length === 0) {
+            elements.recentTranslationsList.innerHTML = `<li>${chrome.i18n.getMessage('NO_RECENT_TRANSLATIONS')}</li>`;
+            return;
+        }
+
+        translations.forEach(translation => {
+            const listItem = document.createElement('li');
+            listItem.dataset.id = translation.id;
+
+            listItem.innerHTML = `
+                <div class="translation-item-header">
+                    <span class="title" contenteditable="true">${translation.title || translation.originalText.substring(0, 50) + '...'}</span>
+                    <div class="actions">
+                        <span class="icon star-icon ${translation.starred ? 'starred' : ''}" title="${chrome.i18n.getMessage('STAR_TRANSLATION')}">⭐</span>
+                        <span class="icon copy-icon" title="${chrome.i18n.getMessage('COPY_TRANSLATION')}">📋</span>
+                        <span class="icon delete-icon" title="${chrome.i18n.getMessage('DELETE_TRANSLATION')}">🗑️</span>
+                    </div>
+                </div>
+                <div class="translation-text">${translation.translatedText}</div>
+            `;
+
+            // Add event listeners for icons and title editing
+            listItem.querySelector('.star-icon').addEventListener('click', handleStarClick);
+            listItem.querySelector('.copy-icon').addEventListener('click', handleCopyClick);
+            listItem.querySelector('.delete-icon').addEventListener('click', handleDeleteClick);
+            listItem.querySelector('.title').addEventListener('blur', handleTitleEdit); // Add event listener for title editing
+
+            elements.recentTranslationsList.appendChild(listItem);
+        });
+    }
+
+    // Event handler for title editing
+    async function handleTitleEdit(event) {
+        const listItem = event.target.closest('li');
+        const translationId = parseInt(listItem.dataset.id);
+        const newTitle = event.target.textContent.trim();
+
+        const { recentTranslations = [] } = await chrome.storage.local.get('recentTranslations');
+        const updatedTranslations = recentTranslations.map(translation => {
+            if (translation.id === translationId) {
+                return { ...translation, title: newTitle };
+            }
+            return translation;
+        });
+
+        await chrome.storage.local.set({ recentTranslations: updatedTranslations });
+        // No need to re-render the whole list, the contenteditable span is already updated
+    }
+
+    // Event handler for star icon click
+    async function handleStarClick(event) {
+        const listItem = event.target.closest('li');
+        const translationId = parseInt(listItem.dataset.id);
+
+        const { recentTranslations = [] } = await chrome.storage.local.get('recentTranslations');
+        const updatedTranslations = recentTranslations.map(translation => {
+            if (translation.id === translationId) {
+                return { ...translation, starred: !translation.starred };
+            }
+            return translation;
+        });
+
+        await chrome.storage.local.set({ recentTranslations: updatedTranslations });
+        loadAndDisplayRecentTranslations(); // Refresh the list
+    }
+
+    // Event handler for copy icon click
+    async function handleCopyClick(event) {
+        const listItem = event.target.closest('li');
+        const translatedText = listItem.querySelector('.translation-text').textContent;
+
+        try {
+            await navigator.clipboard.writeText(translatedText);
+            // Optional: Show a temporary confirmation message
+            console.log('Copied to clipboard:', translatedText);
+        } catch (err) {
+            console.error('Failed to copy text:', err);
+        }
+    }
+
+    // Event handler for delete icon click
+    async function handleDeleteClick(event) {
+        const listItem = event.target.closest('li');
+        const translationId = parseInt(listItem.dataset.id);
+
+        // Add confirmation dialog
+        const confirmed = confirm(chrome.i18n.getMessage('CONFIRM_DELETE_TRANSLATION'));
+        if (!confirmed) {
+            return; // Do nothing if not confirmed
+        }
+
+        const { recentTranslations = [] } = await chrome.storage.local.get('recentTranslations');
+        const updatedTranslations = recentTranslations.filter(translation => translation.id !== translationId);
+
+        await chrome.storage.local.set({ recentTranslations: updatedTranslations });
+        loadAndDisplayRecentTranslations(); // Refresh the list
+    }
+
 
     // Uproszczona inicjalizacja
     const initializeSelects = async () => {
@@ -336,4 +512,4 @@ document.addEventListener('DOMContentLoaded', async () => {
             window.location.reload();
         });
     }
-}); 
+});

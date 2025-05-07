@@ -7,13 +7,105 @@ body {
 .aiGeminiTranslator_container {
     background-color: #1e1e1e;
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Change to row for side-by-side layout */
     font-family: 'Roboto', sans-serif;
     min-width: 350px;
     color: #e0e0e0;
     margin: 0;
     min-height: 300px;
 }
+
+/* Recent Translations Section */
+.aiGeminiTranslator_recent-translations {
+    flex: 1; /* Allow this section to grow */
+    margin: 5px;
+    border: 1px solid #8a5cb8;
+    border-radius: 8px;
+    box-shadow: 0px 0px 6px 1px rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px; /* Minimum width for the recent translations section */
+}
+
+.aiGeminiTranslator_recent-translations .aiGeminiTranslator_card-header {
+    /* Inherits header styles, but can add specific ones if needed */
+}
+
+.aiGeminiTranslator_recent-translations .aiGeminiTranslator_card-content {
+    overflow-y: auto; /* Add scroll for long lists */
+    flex-grow: 1; /* Allow content to take available space */
+}
+
+.aiGeminiTranslator_recent-translations ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.aiGeminiTranslator_recent-translations li {
+    padding: 10px;
+    border-bottom: 1px solid #444;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.aiGeminiTranslator_recent-translations li:last-child {
+    border-bottom: none;
+}
+
+.aiGeminiTranslator_recent-translations li:hover {
+    background-color: #333;
+}
+
+.aiGeminiTranslator_recent-translations .translation-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.aiGeminiTranslator_recent-translations .translation-item-header .title {
+    font-weight: bold;
+    color: #bb86fc;
+    flex-grow: 1;
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.aiGeminiTranslator_recent-translations .translation-item-header .actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.aiGeminiTranslator_recent-translations .translation-item-header .actions .icon {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.aiGeminiTranslator_recent-translations .translation-item-header .actions .icon:hover {
+    opacity: 1;
+}
+
+.aiGeminiTranslator_recent-translations .translation-item-header .actions .star-icon.starred {
+    color: gold; /* Example: Change color to gold for starred */
+}
+
+.aiGeminiTranslator_recent-translations .translation-text {
+    font-size: 0.8rem;
+    color: #e0e0e0;
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}
+
 
 /* Card styles */
 .aiGeminiTranslator_card {
@@ -192,7 +284,7 @@ body {
 
 .aiGeminiTranslator_textarea {
     width: 100%;
-    min-height: 100px;
+    min-height: 150px;
     max-height: 50vh;
     padding: 0.3rem;
     border: 1px solid #424242;
