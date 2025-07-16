@@ -1,0 +1,166 @@
+.aiGeminiTranslator_translation-selected-text-icon {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10000;
+  background-color: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 50%;
+  padding: 4px;
+  font-family: "Roboto", sans-serif;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease-in-out;
+}
+
+.aiGeminiTranslator_translation-selected-text-icon:hover {
+  transform: scale(1.1);
+}
+
+.aiGeminiTranslator_translation-selected-text-icon
+  .aiGeminiTranslator_translation-selected-text-icon-image {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Translation dialog */
+.aiGeminiTranslator_translation-dialog {
+  position: absolute;
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #ececec;
+  border-radius: 8px;
+  padding: 0.3rem;
+  z-index: 10001;
+  font-size: 14px;
+  line-height: 1.4;
+  min-width: 100px;
+  max-width: 500px;
+  max-height: 400px;
+  overflow-y: auto;
+  word-wrap: break-word;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.2s;
+}
+
+.aiGeminiTranslator_translation-content {
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+}
+
+.aiGeminiTranslator_loadingGeminiTranslation {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #bb86fc;
+  border-radius: 50%;
+  background: transparent;
+  animation: aiGeminiTranslator_pulse 1s ease-in-out infinite;
+}
+
+@keyframes aiGeminiTranslator_pulse {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Dodaj nowe style dla błędów i przycisku zamykania */
+.aiGeminiTranslator_translation-dialog.error {
+  border: 2px solid #ff4444;
+}
+
+.aiGeminiTranslator_translation-content.error {
+  color: #ff4444;
+  font-weight: bold;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Nowa animacja ładowania */
+@keyframes aiGeminiTranslator_skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.aiGeminiTranslator_loading-skeleton {
+  animation: aiGeminiTranslator_skeleton 1.5s infinite linear;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 200% 100%;
+}
+
+/* Screenshot selector styles */
+.aiGeminiTranslator_screenshot-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  z-index: 999999 !important;
+  cursor: crosshair !important;
+  pointer-events: auto !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+.aiGeminiTranslator_selection-rect {
+  position: absolute !important;
+  border: 3px dashed #4caf50 !important;
+  background: rgba(76, 175, 80, 0.2) !important;
+  display: none !important;
+  pointer-events: none !important;
+  box-sizing: border-box !important;
+}
+
+.aiGeminiTranslator_screenshot-instructions {
+  position: fixed !important;
+  top: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: #333 !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  border-radius: 5px !important;
+  z-index: 10001 !important;
+  font-family: Arial, sans-serif !important;
+  font-size: 14px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+.aiGeminiTranslator_screenshot-loading {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background: #333 !important;
+  color: white !important;
+  padding: 20px !important;
+  border-radius: 10px !important;
+  z-index: 10002 !important;
+  font-family: Arial, sans-serif !important;
+  text-align: center !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}

@@ -1,0 +1,258 @@
+{
+  "extension_name": {
+    "message": "KI-Übersetzer Gemini API",
+    "description": "Extension name"
+  },
+  "extension_description": {
+    "message": "KI-Übersetzer-Erweiterung mit Google Gemini API",
+    "description": "Extension description"
+  },
+  "translate_button": {
+    "message": "Übersetzen",
+    "description": "Translate button text"
+  },
+  "api_key_placeholder": {
+    "message": "Gib deinen Gemini API-Schlüssel ein",
+    "description": "API key input placeholder"
+  },
+  "translation_failed": {
+    "message": "Übersetzung fehlgeschlagen",
+    "description": "Translation error message"
+  },
+  "copy_success": {
+    "message": "Text kopiert!",
+    "description": "Copy success message"
+  },
+  "language_en": {
+    "message": "Englisch",
+    "description": "English language label"
+  },
+  "language_pl": {
+    "message": "Polnisch",
+    "description": "Polish language label"
+  },
+  "language_es": {
+    "message": "Spanisch",
+    "description": "Spanish language label"
+  },
+  "language_fr": {
+    "message": "Französisch",
+    "description": "French language label"
+  },
+  "language_it": {
+    "message": "Italienisch",
+    "description": "Italian language label"
+  },
+  "language_pt": {
+    "message": "Portugiesisch",
+    "description": "Portuguese language label"
+  },
+  "language_ru": {
+    "message": "Russisch",
+    "description": "Russian language label"
+  },
+  "language_zh": {
+    "message": "Chinesisch",
+    "description": "Chinese language label"
+  },
+  "language_ja": {
+    "message": "Japanisch",
+    "description": "Japanese language label"
+  },
+  "language_ko": {
+    "message": "Koreanisch",
+    "description": "Korean language label"
+  },
+  "language_uk": {
+    "message": "Ukrainisch",
+    "description": "Ukrainian language label"
+  },
+  "API_KEY_VALIDATION_MESSAGE": {
+    "message": "API-Schlüssel wird geprüft...",
+    "description": "API key validation in progress"
+  },
+  "API_KEY_VALID_MESSAGE": {
+    "message": "API-Schlüssel ist gültig",
+    "description": "API key validation success"
+  },
+  "API_KEY_INVALID_MESSAGE": {
+    "message": "Ungültiger API-Schlüssel",
+    "description": "API key validation failed"
+  },
+  "API_KEY_EMPTY_MESSAGE": {
+    "message": "API-Schlüssel darf nicht leer sein",
+    "description": "Empty API key error"
+  },
+  "TRANSLATION_FAILED_MESSAGE": {
+    "message": "Übersetzung fehlgeschlagen",
+    "description": "General translation error"
+  },
+  "TRANSLATION_IN_PROGRESS_MESSAGE": {
+    "message": "Text wird übersetzt...",
+    "description": "Translation in progress status"
+  },
+  "TRANSLATION_COMPLETE_MESSAGE": {
+    "message": "Übersetzung abgeschlossen",
+    "description": "Translation success status"
+  },
+  "API_KEY_NOT_SET_MESSAGE": {
+    "message": "Bitte zuerst API-Schlüssel eingeben",
+    "description": "Missing API key error"
+  },
+  "TEXT_TO_TRANSLATE_EMPTY_MESSAGE": {
+    "message": "Bitte Text zum Übersetzen eingeben",
+    "description": "Empty input text error"
+  },
+  "TEXT_TO_TRANSLATE_LABEL": {
+    "message": "Sprache:",
+    "description": "Language selector label"
+  },
+  "TRANSLATE_TEXT_BUTTON_TEXT": {
+    "message": "Übersetzen",
+    "description": "Translate button text"
+  },
+  "SAVE_API_KEY_BUTTON_TEXT": {
+    "message": "API-Schlüssel speichern",
+    "description": "API key save button"
+  },
+  "TEXT_TO_TRANSLATE_PLACEHOLDER": {
+    "message": "Text zum Übersetzen eingeben",
+    "description": "Input text placeholder"
+  },
+  "TRANSLATED_TEXT_PLACEHOLDER": {
+    "message": "Übersetzung",
+    "description": "Translation result placeholder"
+  },
+  "TEXT_TRANSLATION_STATUS_MESSAGE": {
+    "message": "Übersetzungsstatus",
+    "description": "Translation status header"
+  },
+  "API_KEY_PLACEHOLDER": {
+    "message": "Gib deinen Gemini API-Schlüssel ein",
+    "description": "API key input placeholder"
+  },
+  "API_KEY_CARD_HEADER_TITLE": {
+    "message": "API-Schlüssel",
+    "description": "API key section header"
+  },
+  "SETTINGS_CARD_HEADER_TITLE": {
+    "message": "Einstellungen",
+    "description": "Settings section header"
+  },
+  "TRANSLATION_CARD_HEADER_TITLE": {
+    "message": "Übersetzung",
+    "description": "Translation section header"
+  },
+  "API_STATUS_VALID_TOOLTIP": {
+    "message": "Klicken, um API-Schlüssel zu kopieren",
+    "description": "Tooltip for valid API key status"
+  },
+  "API_STATUS_INVALID_TOOLTIP": {
+    "message": "Klicken, um neuen API-Schlüssel einzugeben",
+    "description": "Tooltip for invalid API key status"
+  },
+  "SELECTED_TEXT_LANGUAGE_LABEL": {
+    "message": "Ausgangssprache:",
+    "description": "Label for selected text language"
+  },
+  "API_KEY_LABEL": {
+    "message": "API-Schlüssel:",
+    "description": "Label for API key input"
+  },
+  "COPY_ICON_TOOLTIP": {
+    "message": "In die Zwischenablage kopieren",
+    "description": "Tooltip for copy icon"
+  },
+  "COPY_SUCCESS_MESSAGE": {
+    "message": "Text in die Zwischenablage kopiert!",
+    "description": "Copy success message"
+  },
+  "COPY_NO_TEXT_MESSAGE": {
+    "message": "Kein Text zum Kopieren",
+    "description": "No text to copy message"
+  },
+  "COPY_FAILED_MESSAGE": {
+    "message": "Text konnte nicht kopiert werden",
+    "description": "Copy failed message"
+  },
+  "HISTORY_CARD_HEADER_TITLE": {
+    "message": "Verlauf",
+    "description": "History section header"
+  },
+  "HISTORY_RESTORE_BUTTON_TEXT": {
+    "message": "Wiederherstellen",
+    "description": "Restore translation button"
+  },
+  "HISTORY_CLEAR_BUTTON_TEXT": {
+    "message": "Verlauf löschen",
+    "description": "Clear history button"
+  },
+  "HISTORY_EMPTY_MESSAGE": {
+    "message": "Kein Übersetzungsverlauf",
+    "description": "Empty history message"
+  },
+  "HISTORY_DELETE_SELECTED_BUTTON_TEXT": {
+    "message": "Ausgewählte löschen",
+    "description": "Delete selected history items button"
+  },
+  "HISTORY_SELECT_ALL_BUTTON_TEXT": {
+    "message": "Alle auswählen",
+    "description": "Select all history items button"
+  },
+  "HISTORY_DESELECT_ALL_BUTTON_TEXT": {
+    "message": "Alle abwählen",
+    "description": "Deselect all history items button"
+  },
+  "HISTORY_ITEM_SELECTED_TOOLTIP": {
+    "message": "Klicken zum Abwählen",
+    "description": "Tooltip for selected history item"
+  },
+  "HISTORY_ITEM_UNSELECTED_TOOLTIP": {
+    "message": "Klicken zum Auswählen",
+    "description": "Tooltip for unselected history item"
+  },
+  "TRANSLATION_MODE_TITLE": {
+    "message": "Übersetzung",
+    "description": "Translation mode title"
+  },
+  "IMAGE_PROMPT_MODE_TITLE": {
+    "message": "Bild-Prompt-Verbesserung",
+    "description": "Image prompt improvement mode title"
+  },
+  "TEXT_CORRECTION_MODE_TITLE": {
+    "message": "Textkorrektur",
+    "description": "Text correction mode title"
+  },
+  "IMAGE_PROMPT_INPUT_PLACEHOLDER": {
+    "message": "Bild-Prompt zur Verbesserung eingeben",
+    "description": "Image prompt input placeholder"
+  },
+  "IMAGE_PROMPT_OUTPUT_PLACEHOLDER": {
+    "message": "Verbesserter Prompt",
+    "description": "Image prompt output placeholder"
+  },
+  "IMPROVE_PROMPT_BUTTON_TEXT": {
+    "message": "Prompt verbessern",
+    "description": "Improve prompt button text"
+  },
+  "IMAGE_PROMPT_LABEL": {
+    "message": "Zielsprache:",
+    "description": "Image prompt language label"
+  },
+  "TEXT_CORRECTION_INPUT_PLACEHOLDER": {
+    "message": "Text zur Korrektur eingeben",
+    "description": "Text correction input placeholder"
+  },
+  "TEXT_CORRECTION_OUTPUT_PLACEHOLDER": {
+    "message": "Korrigierter Text",
+    "description": "Text correction output placeholder"
+  },
+  "CORRECT_TEXT_BUTTON_TEXT": {
+    "message": "Text korrigieren",
+    "description": "Correct text button text"
+  },
+  "TEXT_CORRECTION_LABEL": {
+    "message": "Sprache:",
+    "description": "Text correction language label"
+  }
+} 

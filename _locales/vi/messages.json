@@ -1,0 +1,306 @@
+{
+  "extension_name": {
+    "message": "AI Dịch thuật Gemini API",
+    "description": "Tên extension"
+  },
+  "extension_description": {
+    "message": "Extension dịch thuật AI sử dụng Google Gemini API",
+    "description": "Mô tả extension"
+  },
+  "translate_button": {
+    "message": "Dịch",
+    "description": "Văn bản nút dịch"
+  },
+  "api_key_placeholder": {
+    "message": "Nhập Gemini API Key của bạn",
+    "description": "Placeholder nhập API key"
+  },
+  "translation_failed": {
+    "message": "Dịch thất bại",
+    "description": "Thông báo lỗi dịch"
+  },
+  "copy_success": {
+    "message": "Đã sao chép văn bản vào clipboard!",
+    "description": "Thông báo sao chép thành công"
+  },
+  "API_KEY_VALIDATION_MESSAGE": {
+    "message": "Đang xác thực API key...",
+    "description": "Đang xác thực API key"
+  },
+  "API_KEY_VALID_MESSAGE": {
+    "message": "API key hợp lệ",
+    "description": "API key xác thực thành công"
+  },
+  "API_KEY_INVALID_MESSAGE": {
+    "message": "API key không hợp lệ",
+    "description": "API key xác thực thất bại"
+  },
+  "API_KEY_EMPTY_MESSAGE": {
+    "message": "API key không được để trống",
+    "description": "Lỗi API key trống"
+  },
+  "TRANSLATION_FAILED_MESSAGE": {
+    "message": "Dịch thất bại",
+    "description": "Lỗi dịch tổng quát"
+  },
+  "TRANSLATION_IN_PROGRESS_MESSAGE": {
+    "message": "Đang dịch văn bản...",
+    "description": "Trạng thái đang dịch"
+  },
+  "TRANSLATION_COMPLETE_MESSAGE": {
+    "message": "Dịch hoàn thành",
+    "description": "Trạng thái dịch thành công"
+  },
+  "API_KEY_NOT_SET_MESSAGE": {
+    "message": "Vui lòng đặt API key trước",
+    "description": "Lỗi thiếu API key"
+  },
+  "TEXT_TO_TRANSLATE_EMPTY_MESSAGE": {
+    "message": "Vui lòng nhập văn bản cần dịch",
+    "description": "Lỗi văn bản đầu vào trống"
+  },
+  "TEXT_TO_TRANSLATE_LABEL": {
+    "message": "Ngôn ngữ:",
+    "description": "Nhãn chọn ngôn ngữ"
+  },
+  "TRANSLATE_TEXT_BUTTON_TEXT": {
+    "message": "Dịch",
+    "description": "Văn bản nút dịch"
+  },
+  "SAVE_API_KEY_BUTTON_TEXT": {
+    "message": "Lưu API Key",
+    "description": "Nút lưu API key"
+  },
+  "TEXT_TO_TRANSLATE_PLACEHOLDER": {
+    "message": "Nhập văn bản cần dịch",
+    "description": "Placeholder văn bản đầu vào"
+  },
+  "TRANSLATED_TEXT_PLACEHOLDER": {
+    "message": "Bản dịch",
+    "description": "Placeholder kết quả dịch"
+  },
+  "TEXT_TRANSLATION_STATUS_MESSAGE": {
+    "message": "Trạng thái dịch văn bản",
+    "description": "Tiêu đề trạng thái dịch"
+  },
+  "API_KEY_PLACEHOLDER": {
+    "message": "Nhập Gemini API Key của bạn",
+    "description": "Placeholder nhập API key"
+  },
+  "API_KEY_CARD_HEADER_TITLE": {
+    "message": "API Key",
+    "description": "Tiêu đề phần API key"
+  },
+  "SETTINGS_CARD_HEADER_TITLE": {
+    "message": "Cài đặt",
+    "description": "Tiêu đề phần cài đặt"
+  },
+  "TRANSLATION_CARD_HEADER_TITLE": {
+    "message": "Dịch thuật",
+    "description": "Tiêu đề phần dịch thuật"
+  },
+  "language_en": {
+    "message": "Tiếng Anh",
+    "description": "Nhãn ngôn ngữ tiếng Anh"
+  },
+  "language_pl": {
+    "message": "Tiếng Ba Lan",
+    "description": "Nhãn ngôn ngữ tiếng Ba Lan"
+  },
+  "language_de": {
+    "message": "Tiếng Đức",
+    "description": "Nhãn ngôn ngữ tiếng Đức"
+  },
+  "language_es": {
+    "message": "Tiếng Tây Ban Nha",
+    "description": "Nhãn ngôn ngữ tiếng Tây Ban Nha"
+  },
+  "language_fr": {
+    "message": "Tiếng Pháp",
+    "description": "Nhãn ngôn ngữ tiếng Pháp"
+  },
+  "language_it": {
+    "message": "Tiếng Ý",
+    "description": "Nhãn ngôn ngữ tiếng Ý"
+  },
+  "language_pt": {
+    "message": "Tiếng Bồ Đào Nha",
+    "description": "Nhãn ngôn ngữ tiếng Bồ Đào Nha"
+  },
+  "language_ru": {
+    "message": "Tiếng Nga",
+    "description": "Nhãn ngôn ngữ tiếng Nga"
+  },
+  "language_zh": {
+    "message": "Tiếng Trung",
+    "description": "Nhãn ngôn ngữ tiếng Trung"
+  },
+  "language_ja": {
+    "message": "Tiếng Nhật",
+    "description": "Nhãn ngôn ngữ tiếng Nhật"
+  },
+  "language_ko": {
+    "message": "Tiếng Hàn",
+    "description": "Nhãn ngôn ngữ tiếng Hàn"
+  },
+  "language_uk": {
+    "message": "Tiếng Ukraine",
+    "description": "Nhãn ngôn ngữ tiếng Ukraine"
+  },
+  "language_vi": {
+    "message": "Tiếng Việt",
+    "description": "Nhãn ngôn ngữ tiếng Việt"
+  },
+  "COPY_SUCCESS_MESSAGE": {
+    "message": "Đã sao chép văn bản vào clipboard!",
+    "description": "Thông báo sao chép thành công"
+  },
+  "COPY_NO_TEXT_MESSAGE": {
+    "message": "Không có văn bản để sao chép",
+    "description": "Thông báo không có văn bản để sao chép"
+  },
+  "COPY_FAILED_MESSAGE": {
+    "message": "Sao chép văn bản thất bại",
+    "description": "Thông báo sao chép thất bại"
+  },
+  "HISTORY_CARD_HEADER_TITLE": {
+    "message": "Lịch sử",
+    "description": "Tiêu đề phần lịch sử"
+  },
+  "HISTORY_RESTORE_BUTTON_TEXT": {
+    "message": "Khôi phục",
+    "description": "Nút khôi phục bản dịch"
+  },
+  "HISTORY_CLEAR_BUTTON_TEXT": {
+    "message": "Xóa lịch sử",
+    "description": "Nút xóa lịch sử"
+  },
+  "HISTORY_EMPTY_MESSAGE": {
+    "message": "Không có lịch sử dịch",
+    "description": "Thông báo lịch sử trống"
+  },
+  "HISTORY_DELETE_SELECTED_BUTTON_TEXT": {
+    "message": "Xóa mục đã chọn",
+    "description": "Nút xóa các mục lịch sử đã chọn"
+  },
+  "HISTORY_SELECT_ALL_BUTTON_TEXT": {
+    "message": "Chọn tất cả",
+    "description": "Nút chọn tất cả mục lịch sử"
+  },
+  "HISTORY_DESELECT_ALL_BUTTON_TEXT": {
+    "message": "Bỏ chọn tất cả",
+    "description": "Nút bỏ chọn tất cả mục lịch sử"
+  },
+  "HISTORY_ITEM_SELECTED_TOOLTIP": {
+    "message": "Nhấp để bỏ chọn",
+    "description": "Tooltip cho mục lịch sử đã chọn"
+  },
+  "HISTORY_ITEM_UNSELECTED_TOOLTIP": {
+    "message": "Nhấp để chọn",
+    "description": "Tooltip cho mục lịch sử chưa chọn"
+  },
+  "ADD_API_KEY_BUTTON_TEXT": {
+    "message": "Thêm API Key",
+    "description": "Văn bản nút thêm API key"
+  },
+  "VIEW_API_STATUS_BUTTON_TEXT": {
+    "message": "Xem trạng thái",
+    "description": "Văn bản nút xem trạng thái API"
+  },
+  "API_KEY_ADDED_SUCCESS": {
+    "message": "Đã thêm API key thành công!",
+    "description": "Thông báo thêm API key thành công"
+  },
+  "API_KEY_ALREADY_EXISTS": {
+    "message": "API key đã tồn tại",
+    "description": "Lỗi API key đã tồn tại"
+  },
+  "API_KEY_REMOVED_SUCCESS": {
+    "message": "Đã xóa API key thành công",
+    "description": "Thông báo xóa API key thành công"
+  },
+  "API_KEY_INVALID_FORMAT": {
+    "message": "Định dạng API key không hợp lệ",
+    "description": "Lỗi định dạng API key không hợp lệ"
+  },
+  "REMOVE_API_KEY_CONFIRM": {
+    "message": "Bạn có chắc chắn muốn xóa API key này?",
+    "description": "Thông báo xác nhận xóa API key"
+  },
+  "API_KEYS_STATUS_TITLE": {
+    "message": "Trạng thái API Keys",
+    "description": "Tiêu đề modal trạng thái API keys"
+  },
+  "NO_API_KEYS_CONFIGURED": {
+    "message": "Chưa cấu hình API key nào",
+    "description": "Thông báo không có API key"
+  },
+  "API_KEY_READY": {
+    "message": "Sẵn sàng",
+    "description": "Trạng thái API key sẵn sàng"
+  },
+  "API_KEY_RATE_LIMITED": {
+    "message": "Bị giới hạn tốc độ",
+    "description": "Trạng thái API key bị rate limit"
+  },
+  "API_KEY_ERROR_STATUS": {
+    "message": "Lỗi",
+    "description": "Trạng thái API key lỗi"
+  },
+  "YOUTUBE_SETTINGS_TITLE": {
+    "message": "Tính năng YouTube",
+    "description": "Tiêu đề phần cài đặt YouTube"
+  },
+  "YOUTUBE_SUBTITLE_LABEL": {
+    "message": "Tự động dịch phụ đề YouTube",
+    "description": "Nhãn bật/tắt dịch phụ đề YouTube"
+  },
+  "YOUTUBE_SUBTITLE_DESCRIPTION": {
+    "message": "Tự động dịch phụ đề video YouTube theo thời gian thực. Bạn cũng có thể bật/tắt tính năng này trực tiếp trên YouTube bằng nút dịch trong điều khiển video.",
+    "description": "Mô tả bật/tắt dịch phụ đề YouTube"
+  },
+  "TRANSLATION_MODE_TITLE": {
+    "message": "Dịch thuật",
+    "description": "Tiêu đề chế độ dịch thuật"
+  },
+  "IMAGE_PROMPT_MODE_TITLE": {
+    "message": "Cải thiện Prompt Hình ảnh",
+    "description": "Tiêu đề chế độ cải thiện prompt hình ảnh"
+  },
+  "TEXT_CORRECTION_MODE_TITLE": {
+    "message": "Sửa lỗi Văn bản",
+    "description": "Tiêu đề chế độ sửa lỗi văn bản"
+  },
+  "IMAGE_PROMPT_INPUT_PLACEHOLDER": {
+    "message": "Nhập prompt tạo hình ảnh để cải thiện",
+    "description": "Placeholder nhập prompt hình ảnh"
+  },
+  "IMAGE_PROMPT_OUTPUT_PLACEHOLDER": {
+    "message": "Prompt đã cải thiện",
+    "description": "Placeholder kết quả prompt hình ảnh"
+  },
+  "IMPROVE_PROMPT_BUTTON_TEXT": {
+    "message": "Cải thiện Prompt",
+    "description": "Văn bản nút cải thiện prompt"
+  },
+  "IMAGE_PROMPT_LABEL": {
+    "message": "Ngôn ngữ đích:",
+    "description": "Nhãn ngôn ngữ prompt hình ảnh"
+  },
+  "TEXT_CORRECTION_INPUT_PLACEHOLDER": {
+    "message": "Nhập văn bản cần sửa lỗi",
+    "description": "Placeholder nhập văn bản sửa lỗi"
+  },
+  "TEXT_CORRECTION_OUTPUT_PLACEHOLDER": {
+    "message": "Văn bản đã sửa lỗi",
+    "description": "Placeholder kết quả sửa lỗi văn bản"
+  },
+  "CORRECT_TEXT_BUTTON_TEXT": {
+    "message": "Sửa lỗi Văn bản",
+    "description": "Văn bản nút sửa lỗi văn bản"
+  },
+  "TEXT_CORRECTION_LABEL": {
+    "message": "Ngôn ngữ:",
+    "description": "Nhãn ngôn ngữ sửa lỗi văn bản"
+  }
+}

@@ -1,0 +1,963 @@
+@use "sass:color";
+
+// Variables
+$primary-bg: #1e1e1e;
+$secondary-bg: #252525;
+$card-bg: #2a2a2a;
+$content-bg: #2c2c2c;
+$input-bg: #333333;
+$border-color: #424242;
+$border-light: #444;
+$border-accent: #555;
+
+$primary-text: #e0e0e0;
+$secondary-text: #7a7a7a;
+$muted-text: #666;
+$light-text: #bbb;
+$accent-text: #9c6ad0;
+$placeholder-text: #bb86fc;
+
+$primary-accent: #bb86fc;
+$accent-hover: #9c6ad0;
+$accent-active: #8a5cb8;
+$accent-border: #8a5cb8;
+$purple-accent: #6a4c93;
+$error-color: #ff4444;
+$delete-bg: #8b3a3a;
+
+$border-radius: 4px;
+$border-radius-lg: 8px;
+$border-radius-sm: 3px;
+$border-radius-round: 50%;
+
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+
+$font-xs: 0.55rem;
+$font-sm: 0.65rem;
+$font-base: 0.8rem;
+$font-lg: 0.9rem;
+$font-xl: 1rem;
+
+$spacing-xs: 4px;
+$spacing-sm: 6px;
+$spacing-base: 8px;
+$spacing-md: 10px;
+$spacing-lg: 12px;
+$spacing-xl: 16px;
+$spacing-2xl: 20px;
+
+// Mixins
+@mixin button-base {
+  padding: 0.3rem;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background-color $transition-normal;
+}
+
+@mixin input-base {
+  width: 100%;
+  padding: 0.3rem;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  background-color: $input-bg;
+  color: $secondary-text;
+  box-sizing: border-box;
+  font-size: $font-base;
+
+  &:focus {
+    border-color: $primary-accent;
+    outline: none;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Base styles
+body {
+  background-color: $primary-bg;
+}
+
+// Container
+.aiGeminiTranslator_container {
+  background-color: $primary-bg;
+  display: flex;
+  flex-direction: row;
+  font-family: "Roboto", sans-serif;
+  width: 650px;
+  max-height: 584px;
+  color: $primary-text;
+  margin: 0;
+  min-height: 400px;
+  border-radius: $border-radius-lg;
+}
+
+.aiGeminiTranslator_main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid $border-color;
+  overflow-y: auto;
+
+  // Custom scrollbar styling
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($accent-text, 0.3);
+    border-radius: 3px;
+
+    &:hover {
+      background: rgba($accent-text, 0.5);
+    }
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: rgba($accent-text, 0.3) transparent;
+}
+
+.aiGeminiTranslator_history-sidebar {
+  width: 200px;
+  background-color: $secondary-bg;
+  display: flex;
+  flex-direction: column;
+  max-height: 600px;
+  border-left: 1px solid $accent-border;
+}
+
+// History section
+.aiGeminiTranslator_history-header {
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-base $spacing-md;
+  background-color: $content-bg;
+  border-bottom: 1px solid $border-light;
+  gap: $spacing-base;
+
+  h3 {
+    margin: 0;
+    font-size: $font-lg;
+    color: $accent-text;
+  }
+}
+
+.aiGeminiTranslator_history-controls {
+  display: flex;
+  gap: $spacing-xs;
+}
+
+.aiGeminiTranslator_select-button,
+.aiGeminiTranslator_delete-button {
+  @include button-base;
+  padding: $spacing-xs $spacing-sm;
+  font-size: $font-sm;
+  flex: 1;
+  min-width: 0;
+}
+
+.aiGeminiTranslator_select-button {
+  background-color: $purple-accent;
+
+  &:hover {
+    background-color: color.adjust($purple-accent, $lightness: 10%);
+  }
+}
+
+.aiGeminiTranslator_delete-button {
+  background-color: $delete-bg;
+
+  &:hover {
+    background-color: color.adjust($delete-bg, $lightness: 10%);
+  }
+
+  &:disabled {
+    background-color: $border-light;
+    color: $muted-text;
+    cursor: not-allowed;
+  }
+}
+
+.aiGeminiTranslator_history-cards {
+  height: 400px;
+  overflow-y: auto;
+  padding: $spacing-base;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  // Custom scrollbar styling
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($accent-text, 0.3);
+    border-radius: 3px;
+
+    &:hover {
+      background: rgba($accent-text, 0.5);
+    }
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: rgba($accent-text, 0.3) transparent;
+}
+
+// Card styles
+.aiGeminiTranslator_card {
+  background-color: $card-bg;
+  border: 1px solid $accent-border;
+  border-radius: $border-radius-lg;
+  box-shadow: 0px 0px 6px 1px rgba(255, 255, 255, 0.2);
+  margin: 5px;
+}
+
+.aiGeminiTranslator_card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem;
+  background-color: $content-bg;
+  color: $primary-text;
+  border-bottom: 1px solid $border-light;
+  cursor: pointer;
+  border-radius: $border-radius-lg;
+
+  h2 {
+    margin: 0;
+    font-size: $font-xl;
+    color: $accent-text;
+  }
+}
+
+.aiGeminiTranslator_card-content {
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  transition: all $transition-normal;
+  overflow-y: auto;
+}
+
+// Collapse functionality
+.aiGeminiTranslator_card.collapsed .aiGeminiTranslator_card-content {
+  display: none;
+}
+
+.aiGeminiTranslator_collapse-button {
+  background: none;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  padding: 0;
+  @include flex-center;
+  transition: background-color $transition-normal;
+
+  &:hover {
+    background-color: $accent-text;
+  }
+}
+
+.aiGeminiTranslator_collapse-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e0e0e0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: $spacing-xl;
+  width: $spacing-2xl;
+  height: $spacing-2xl;
+  transition: transform $transition-normal;
+
+  .aiGeminiTranslator_card.collapsed & {
+    transform: rotate(0deg);
+  }
+
+  .aiGeminiTranslator_card & {
+    transform: rotate(180deg);
+  }
+}
+
+// API Key section
+.aiGeminiTranslator_api-key-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.aiGeminiTranslator_api-key-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+// Clear Icon
+.aiGeminiTranslator_api-key-clear-icon {
+  position: absolute;
+  right: $spacing-base;
+  bottom: 9px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all $transition-normal;
+  @include flex-center;
+  border-radius: $border-radius-round;
+
+  &.active {
+    opacity: 0.8;
+  }
+
+  &:hover {
+    background-color: #535353;
+
+    &::before,
+    &::after {
+      background-color: $error-color;
+      transform: rotate(180deg);
+      height: 3px;
+    }
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: $spacing-lg;
+    height: 2px;
+    background-color: $primary-text;
+    border-radius: 1px;
+    transition: all $transition-normal;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
+// API Key Status Icon
+.aiGeminiTranslator_api-key-status-icon {
+  width: $spacing-2xl;
+  height: $spacing-2xl;
+  background-size: 18px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: $spacing-base;
+
+  &.valid {
+    background-image: var(--valid-icon);
+  }
+
+  &.invalid {
+    background-image: var(--invalid-icon);
+  }
+}
+
+// Status messages
+.aiGeminiTranslator_status {
+  color: $muted-text;
+  display: none;
+  font-size: $font-base;
+}
+
+// Form elements
+.aiGeminiTranslator_input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: $secondary-text;
+  font-size: $font-base;
+}
+
+.aiGeminiTranslator_textarea {
+  @include input-base;
+  min-height: 100px;
+  max-height: 50vh;
+  resize: vertical;
+  transition: all 0.1s ease;
+
+  &::placeholder {
+    color: $placeholder-text;
+    opacity: 0.3;
+  }
+}
+
+.aiGeminiTranslator_input,
+.aiGeminiTranslator_select {
+  @include input-base;
+  margin-bottom: 0.3rem;
+}
+
+.aiGeminiTranslator_select {
+  appearance: none;
+  margin: 0 0.3rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e0e0e0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $spacing-md center;
+  background-size: $spacing-xl;
+}
+
+// Buttons
+.aiGeminiTranslator_button {
+  @include button-base;
+  background-color: $primary-accent;
+  color: $primary-text;
+
+  &:hover {
+    background-color: $accent-hover;
+  }
+
+  &:active {
+    background-color: $accent-active;
+  }
+}
+
+// Translated text container
+.aiGeminiTranslator_translated-text-container {
+  position: relative;
+}
+
+// Copy icon
+.aiGeminiTranslator_copy-icon {
+  position: absolute;
+  bottom: $spacing-base;
+  right: $spacing-base;
+  width: $spacing-xl;
+  height: $spacing-xl;
+  background-image: var(--copy-icon);
+  background-size: $spacing-xl;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity $transition-normal;
+  z-index: 1;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+// Copy tooltip
+.aiGeminiTranslator_copy-tooltip {
+  position: absolute;
+  right: 28px;
+  bottom: $spacing-sm;
+  background-color: $input-bg;
+  color: #fff;
+  padding: 5px $spacing-md;
+  border-radius: $border-radius;
+  font-size: $spacing-lg;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $transition-fast, visibility $transition-fast;
+  white-space: nowrap;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: $spacing-xs;
+    border-style: solid;
+    border-color: transparent transparent transparent $input-bg;
+  }
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// API Status Container
+.aiGeminiTranslator_api-status-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+// API Status Tooltip
+.aiGeminiTranslator_api-status-tooltip {
+  position: absolute;
+  right: calc(100% + $spacing-base);
+  top: 50%;
+  transform: translateY(-50%);
+  background: $card-bg;
+  color: $primary-text;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius;
+  font-size: 0.6rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $transition-normal, visibility $transition-normal,
+    transform $transition-normal;
+  pointer-events: none;
+  white-space: normal;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  max-width: 220px;
+  min-width: 120px;
+  text-align: center;
+  word-wrap: break-word;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent $card-bg;
+  }
+}
+
+.aiGeminiTranslator_api-key-status-icon:hover
+  ~ .aiGeminiTranslator_api-status-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(-2px);
+}
+
+// Selected text language container
+.aiGeminiTranslator_selected-text-language-container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $border-light;
+  padding-bottom: 0.3rem;
+}
+
+.aiGeminiTranslator_selected-text-language-select {
+  margin: 0.3rem 0;
+}
+
+// History card styles
+.aiGeminiTranslator_history-card {
+  background-color: $input-bg;
+  border: 1px solid $accent-border;
+  border-radius: $spacing-sm;
+  padding: $spacing-sm;
+  transition: all $transition-fast;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: $spacing-base;
+
+  &:hover {
+    background-color: #3a3a3a;
+    border-color: $purple-accent;
+  }
+
+  &.selected {
+    background-color: #4a3a6a;
+    border-color: $accent-text;
+  }
+}
+
+.aiGeminiTranslator_history-checkbox {
+  width: $spacing-xl;
+  height: $spacing-xl;
+  border: 2px solid $muted-text;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  @include flex-center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $accent-text;
+  }
+
+  &.checked {
+    background-color: $accent-text;
+    border-color: $accent-text;
+
+    &::after {
+      content: "✓";
+      color: white;
+      font-size: $spacing-md;
+      font-weight: bold;
+    }
+  }
+}
+
+.aiGeminiTranslator_history-content {
+  flex: 1;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.aiGeminiTranslator_history-original {
+  font-size: $font-sm;
+  color: $light-text;
+  @include text-ellipsis;
+  line-height: 1.2;
+}
+
+.aiGeminiTranslator_history-translated {
+  font-size: $font-sm;
+  color: $accent-text;
+  @include text-ellipsis;
+  line-height: 1.2;
+}
+
+.aiGeminiTranslator_history-languages {
+  font-size: $font-xs;
+  color: #777;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  line-height: 1.2;
+}
+
+.aiGeminiTranslator_source-lang,
+.aiGeminiTranslator_target-lang {
+  font-weight: 500;
+}
+
+.aiGeminiTranslator_lang-arrow {
+  color: $accent-text;
+  font-weight: bold;
+}
+
+.aiGeminiTranslator_history-empty {
+  text-align: center;
+  color: #888;
+  font-size: 0.75rem;
+  padding: $spacing-2xl $spacing-md;
+  font-style: italic;
+}
+
+/* API Keys Management Styles */
+.aiGeminiTranslator_api-key-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.aiGeminiTranslator_button.aiGeminiTranslator_secondary {
+  background-color: #424242;
+  border: 1px solid #616161;
+
+  &:hover {
+    background-color: #515151;
+  }
+}
+
+.aiGeminiTranslator_api-keys-list {
+  margin-top: $spacing-xl;
+  padding-top: $spacing-xl;
+  border-top: 1px solid $border-color;
+
+  h4 {
+    margin: 0 0 $spacing-md 0;
+    color: $accent-text;
+    font-size: $font-lg;
+  }
+}
+
+.aiGeminiTranslator_api-keys-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-base;
+  max-height: 200px;
+  overflow-y: auto;
+
+  // Custom scrollbar for API keys container
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($accent-text, 0.2);
+    border-radius: 2px;
+
+    &:hover {
+      background: rgba($accent-text, 0.4);
+    }
+  }
+}
+
+.aiGeminiTranslator_api-key-actions {
+  display: flex;
+  gap: $spacing-base;
+  margin-top: $spacing-base;
+
+  .aiGeminiTranslator_button {
+    flex: 1;
+
+    &.aiGeminiTranslator_secondary {
+      background-color: $border-light;
+      color: $primary-text;
+
+      &:hover {
+        background-color: color.adjust($border-light, $lightness: 10%);
+      }
+    }
+  }
+}
+
+/* Custom scrollbar for API keys container */
+.aiGeminiTranslator_api-keys-container {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #2c2c2c;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #9c6ad0;
+    border-radius: 3px;
+
+    &:hover {
+      background: #b388d4;
+    }
+  }
+}
+
+.aiGeminiTranslator_api-key-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  margin: 0;
+  background-color: #2c2c2c;
+  border: 1px solid #424242;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  min-height: 44px;
+
+  &.healthy {
+    border-left: 3px solid #4caf50;
+  }
+
+  &.rate-limited {
+    border-left: 3px solid #ff9800;
+  }
+
+  &.error {
+    border-left: 3px solid #f44336;
+  }
+}
+
+.aiGeminiTranslator_api-key-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.aiGeminiTranslator_api-key-display {
+  color: #e0e0e0;
+  font-family: monospace;
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.aiGeminiTranslator_api-key-status-text {
+  font-size: 0.75rem;
+  margin-top: 2px;
+
+  &.healthy {
+    color: #4caf50;
+  }
+
+  &.rate-limited {
+    color: #ff9800;
+  }
+
+  &.error {
+    color: #f44336;
+  }
+}
+
+.aiGeminiTranslator_api-key-remove {
+  background: none;
+  border: none;
+  color: #f44336;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 0.8rem;
+  border-radius: 2px;
+  margin-left: 8px;
+
+  &:hover {
+    background-color: #f44336;
+    color: white;
+  }
+}
+
+.aiGeminiTranslator_api-status-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.aiGeminiTranslator_api-status-content {
+  background-color: #2c2c2c;
+  border: 1px solid #424242;
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.aiGeminiTranslator_api-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  h3 {
+    margin: 0;
+    color: #9c6ad0;
+  }
+}
+
+.aiGeminiTranslator_api-status-close {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: #f44336;
+  }
+}
+
+/* YouTube Settings Styles */
+.aiGeminiTranslator_youtube-settings {
+  margin-top: $spacing-xl;
+  padding-top: $spacing-xl;
+  border-top: 1px solid $border-color;
+
+  h4 {
+    margin: 0 0 $spacing-md 0;
+    color: $accent-text;
+    font-size: $font-lg;
+  }
+}
+
+.aiGeminiTranslator_setting-item {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-base;
+}
+
+.aiGeminiTranslator_toggle-container {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  cursor: pointer;
+}
+
+.aiGeminiTranslator_toggle-input {
+  display: none;
+}
+
+.aiGeminiTranslator_toggle-slider {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background-color: $border-light;
+  border-radius: 12px;
+  transition: background-color $transition-normal;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform $transition-normal;
+  }
+}
+
+.aiGeminiTranslator_toggle-input:checked + .aiGeminiTranslator_toggle-slider {
+  background-color: $accent-text;
+
+  &::before {
+    transform: translateX(20px);
+  }
+}
+
+.aiGeminiTranslator_toggle-label {
+  color: $primary-text;
+  font-size: $font-base;
+  font-weight: 500;
+}
+
+.aiGeminiTranslator_setting-description {
+  margin: 0;
+  color: $secondary-text;
+  font-size: $font-sm;
+  line-height: 1.4;
+}

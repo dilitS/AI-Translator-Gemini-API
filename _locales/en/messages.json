@@ -1,0 +1,306 @@
+{
+  "extension_name": {
+    "message": "AI Translator Gemini API",
+    "description": "Extension name"
+  },
+  "extension_description": {
+    "message": "AI translator extension using Google Gemini API",
+    "description": "Extension description"
+  },
+  "translate_button": {
+    "message": "Translate",
+    "description": "Translate button text"
+  },
+  "api_key_placeholder": {
+    "message": "Enter your Gemini API Key",
+    "description": "API key input placeholder"
+  },
+  "translation_failed": {
+    "message": "Translation failed",
+    "description": "Translation error message"
+  },
+  "copy_success": {
+    "message": "Text copied to clipboard!",
+    "description": "Copy success message"
+  },
+  "API_KEY_VALIDATION_MESSAGE": {
+    "message": "Validating API key...",
+    "description": "API key validation in progress"
+  },
+  "API_KEY_VALID_MESSAGE": {
+    "message": "API key is valid",
+    "description": "API key validation success"
+  },
+  "API_KEY_INVALID_MESSAGE": {
+    "message": "Invalid API key",
+    "description": "API key validation failed"
+  },
+  "API_KEY_EMPTY_MESSAGE": {
+    "message": "API key cannot be empty",
+    "description": "Empty API key error"
+  },
+  "TRANSLATION_FAILED_MESSAGE": {
+    "message": "Translation failed",
+    "description": "General translation error"
+  },
+  "TRANSLATION_IN_PROGRESS_MESSAGE": {
+    "message": "Translating text...",
+    "description": "Translation in progress status"
+  },
+  "TRANSLATION_COMPLETE_MESSAGE": {
+    "message": "Translation complete",
+    "description": "Translation success status"
+  },
+  "API_KEY_NOT_SET_MESSAGE": {
+    "message": "Please set your API key first",
+    "description": "Missing API key error"
+  },
+  "TEXT_TO_TRANSLATE_EMPTY_MESSAGE": {
+    "message": "Please enter text to translate",
+    "description": "Empty input text error"
+  },
+  "TEXT_TO_TRANSLATE_LABEL": {
+    "message": "Language:",
+    "description": "Language selector label"
+  },
+  "TRANSLATE_TEXT_BUTTON_TEXT": {
+    "message": "Translate",
+    "description": "Translate button text"
+  },
+  "SAVE_API_KEY_BUTTON_TEXT": {
+    "message": "Save API Key",
+    "description": "API key save button"
+  },
+  "TEXT_TO_TRANSLATE_PLACEHOLDER": {
+    "message": "Enter text to translate",
+    "description": "Input text placeholder"
+  },
+  "TRANSLATED_TEXT_PLACEHOLDER": {
+    "message": "Translation",
+    "description": "Translation result placeholder"
+  },
+  "TEXT_TRANSLATION_STATUS_MESSAGE": {
+    "message": "Text translation status",
+    "description": "Translation status header"
+  },
+  "API_KEY_PLACEHOLDER": {
+    "message": "Enter your Gemini API Key",
+    "description": "API key input placeholder"
+  },
+  "API_KEY_CARD_HEADER_TITLE": {
+    "message": "API Key",
+    "description": "API key section header"
+  },
+  "SETTINGS_CARD_HEADER_TITLE": {
+    "message": "Settings",
+    "description": "Settings section header"
+  },
+  "TRANSLATION_CARD_HEADER_TITLE": {
+    "message": "Translation",
+    "description": "Translation section header"
+  },
+  "language_en": {
+    "message": "English",
+    "description": "English language label"
+  },
+  "language_pl": {
+    "message": "Polish",
+    "description": "Polish language label"
+  },
+  "language_de": {
+    "message": "German",
+    "description": "German language label"
+  },
+  "language_es": {
+    "message": "Spanish",
+    "description": "Spanish language label"
+  },
+  "language_fr": {
+    "message": "French",
+    "description": "French language label"
+  },
+  "language_it": {
+    "message": "Italian",
+    "description": "Italian language label"
+  },
+  "language_pt": {
+    "message": "Portuguese",
+    "description": "Portuguese language label"
+  },
+  "language_ru": {
+    "message": "Russian",
+    "description": "Russian language label"
+  },
+  "language_zh": {
+    "message": "Chinese",
+    "description": "Chinese language label"
+  },
+  "language_ja": {
+    "message": "Japanese",
+    "description": "Japanese language label"
+  },
+  "language_ko": {
+    "message": "Korean",
+    "description": "Korean language label"
+  },
+  "language_uk": {
+    "message": "Ukrainian",
+    "description": "Ukrainian language label"
+  },
+  "language_vi": {
+    "message": "Vietnamese",
+    "description": "Vietnamese language label"
+  },
+  "COPY_SUCCESS_MESSAGE": {
+    "message": "Text copied to clipboard!",
+    "description": "Copy success message"
+  },
+  "COPY_NO_TEXT_MESSAGE": {
+    "message": "No text to copy",
+    "description": "No text to copy message"
+  },
+  "COPY_FAILED_MESSAGE": {
+    "message": "Failed to copy text",
+    "description": "Copy failed message"
+  },
+  "HISTORY_CARD_HEADER_TITLE": {
+    "message": "History",
+    "description": "History section header"
+  },
+  "HISTORY_RESTORE_BUTTON_TEXT": {
+    "message": "Restore",
+    "description": "Restore translation button"
+  },
+  "HISTORY_CLEAR_BUTTON_TEXT": {
+    "message": "Clear History",
+    "description": "Clear history button"
+  },
+  "HISTORY_EMPTY_MESSAGE": {
+    "message": "No translation history",
+    "description": "Empty history message"
+  },
+  "HISTORY_DELETE_SELECTED_BUTTON_TEXT": {
+    "message": "Delete Selected",
+    "description": "Delete selected history items button"
+  },
+  "HISTORY_SELECT_ALL_BUTTON_TEXT": {
+    "message": "Select All",
+    "description": "Select all history items button"
+  },
+  "HISTORY_DESELECT_ALL_BUTTON_TEXT": {
+    "message": "Deselect All",
+    "description": "Deselect all history items button"
+  },
+  "HISTORY_ITEM_SELECTED_TOOLTIP": {
+    "message": "Click to deselect",
+    "description": "Tooltip for selected history item"
+  },
+  "HISTORY_ITEM_UNSELECTED_TOOLTIP": {
+    "message": "Click to select",
+    "description": "Tooltip for unselected history item"
+  },
+  "ADD_API_KEY_BUTTON_TEXT": {
+    "message": "Add API Key",
+    "description": "Add API key button text"
+  },
+  "VIEW_API_STATUS_BUTTON_TEXT": {
+    "message": "View Status",
+    "description": "View API status button text"
+  },
+  "API_KEY_ADDED_SUCCESS": {
+    "message": "API key added successfully!",
+    "description": "API key added success message"
+  },
+  "API_KEY_ALREADY_EXISTS": {
+    "message": "API key already exists",
+    "description": "API key already exists error"
+  },
+  "API_KEY_REMOVED_SUCCESS": {
+    "message": "API key removed successfully",
+    "description": "API key removed success message"
+  },
+  "API_KEY_INVALID_FORMAT": {
+    "message": "Invalid API key format",
+    "description": "Invalid API key format error"
+  },
+  "REMOVE_API_KEY_CONFIRM": {
+    "message": "Are you sure you want to remove this API key?",
+    "description": "Remove API key confirmation message"
+  },
+  "API_KEYS_STATUS_TITLE": {
+    "message": "API Keys Status",
+    "description": "API keys status modal title"
+  },
+  "NO_API_KEYS_CONFIGURED": {
+    "message": "No API keys configured",
+    "description": "No API keys message"
+  },
+  "API_KEY_READY": {
+    "message": "Ready",
+    "description": "API key ready status"
+  },
+  "API_KEY_RATE_LIMITED": {
+    "message": "Rate limited",
+    "description": "API key rate limited status"
+  },
+  "API_KEY_ERROR_STATUS": {
+    "message": "Error",
+    "description": "API key error status"
+  },
+  "YOUTUBE_SETTINGS_TITLE": {
+    "message": "YouTube Features",
+    "description": "YouTube settings section title"
+  },
+  "YOUTUBE_SUBTITLE_LABEL": {
+    "message": "Auto-translate YouTube subtitles",
+    "description": "YouTube subtitle translation toggle label"
+  },
+  "YOUTUBE_SUBTITLE_DESCRIPTION": {
+    "message": "Automatically translate YouTube video subtitles in real-time. You can also toggle this feature directly on YouTube with the translate button in the video controls.",
+    "description": "YouTube subtitle translation toggle description"
+  },
+  "TRANSLATION_MODE_TITLE": {
+    "message": "Translation",
+    "description": "Translation mode title"
+  },
+  "IMAGE_PROMPT_MODE_TITLE": {
+    "message": "Image Prompt Improvement",
+    "description": "Image prompt improvement mode title"
+  },
+  "TEXT_CORRECTION_MODE_TITLE": {
+    "message": "Text Correction",
+    "description": "Text correction mode title"
+  },
+  "IMAGE_PROMPT_INPUT_PLACEHOLDER": {
+    "message": "Enter image generation prompt to improve",
+    "description": "Image prompt input placeholder"
+  },
+  "IMAGE_PROMPT_OUTPUT_PLACEHOLDER": {
+    "message": "Improved prompt",
+    "description": "Image prompt output placeholder"
+  },
+  "IMPROVE_PROMPT_BUTTON_TEXT": {
+    "message": "Improve Prompt",
+    "description": "Improve prompt button text"
+  },
+  "IMAGE_PROMPT_LABEL": {
+    "message": "Target Language:",
+    "description": "Image prompt language label"
+  },
+  "TEXT_CORRECTION_INPUT_PLACEHOLDER": {
+    "message": "Enter text to correct",
+    "description": "Text correction input placeholder"
+  },
+  "TEXT_CORRECTION_OUTPUT_PLACEHOLDER": {
+    "message": "Corrected text",
+    "description": "Text correction output placeholder"
+  },
+  "CORRECT_TEXT_BUTTON_TEXT": {
+    "message": "Correct Text",
+    "description": "Correct text button text"
+  },
+  "TEXT_CORRECTION_LABEL": {
+    "message": "Language:",
+    "description": "Text correction language label"
+  }
+}

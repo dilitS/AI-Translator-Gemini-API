@@ -1,0 +1,250 @@
+{
+  "extension_name": {
+    "message": "AI翻訳 Gemini API",
+    "description": "Extension name"
+  },
+  "extension_description": {
+    "message": "Google Gemini APIを使用したAI翻訳拡張機能",
+    "description": "Extension description"
+  },
+  "translate_button": {
+    "message": "翻訳",
+    "description": "Translate button text"
+  },
+  "api_key_placeholder": {
+    "message": "Gemini APIキーを入力",
+    "description": "API key input placeholder"
+  },
+  "translation_failed": {
+    "message": "翻訳に失敗しました",
+    "description": "Translation error message"
+  },
+  "copy_success": {
+    "message": "テキストをコピーしました",
+    "description": "Copy success message"
+  },
+  "API_KEY_VALIDATION_MESSAGE": {
+    "message": "APIキーを検証中...",
+    "description": "API key validation in progress"
+  },
+  "API_KEY_VALID_MESSAGE": {
+    "message": "APIキーは有効です",
+    "description": "API key validation success"
+  },
+  "API_KEY_INVALID_MESSAGE": {
+    "message": "APIキーが無効です",
+    "description": "API key validation failed"
+  },
+  "API_KEY_EMPTY_MESSAGE": {
+    "message": "APIキーを入力してください",
+    "description": "Empty API key error"
+  },
+  "TRANSLATION_FAILED_MESSAGE": {
+    "message": "翻訳に失敗しました",
+    "description": "General translation error"
+  },
+  "TRANSLATION_IN_PROGRESS_MESSAGE": {
+    "message": "翻訳中...",
+    "description": "Translation in progress status"
+  },
+  "TRANSLATION_COMPLETE_MESSAGE": {
+    "message": "翻訳が完了しました",
+    "description": "Translation success status"
+  },
+  "API_KEY_NOT_SET_MESSAGE": {
+    "message": "APIキーを設定してください",
+    "description": "Missing API key error"
+  },
+  "TEXT_TO_TRANSLATE_EMPTY_MESSAGE": {
+    "message": "翻訳するテキストを入力してください",
+    "description": "Empty input text error"
+  },
+  "TEXT_TO_TRANSLATE_LABEL": {
+    "message": "言語:",
+    "description": "Language selector label"
+  },
+  "TRANSLATE_TEXT_BUTTON_TEXT": {
+    "message": "翻訳",
+    "description": "Translate button text"
+  },
+  "SAVE_API_KEY_BUTTON_TEXT": {
+    "message": "APIキーを保存",
+    "description": "API key save button"
+  },
+  "TEXT_TO_TRANSLATE_PLACEHOLDER": {
+    "message": "翻訳するテキストを入力",
+    "description": "Input text placeholder"
+  },
+  "TRANSLATED_TEXT_PLACEHOLDER": {
+    "message": "翻訳結果",
+    "description": "Translation result placeholder"
+  },
+  "TEXT_TRANSLATION_STATUS_MESSAGE": {
+    "message": "翻訳ステータス",
+    "description": "Translation status header"
+  },
+  "API_KEY_PLACEHOLDER": {
+    "message": "Gemini APIキーを入力",
+    "description": "API key input placeholder"
+  },
+  "API_KEY_CARD_HEADER_TITLE": {
+    "message": "APIキー",
+    "description": "API key section header"
+  },
+  "SETTINGS_CARD_HEADER_TITLE": {
+    "message": "設定",
+    "description": "Settings section header"
+  },
+  "TRANSLATION_CARD_HEADER_TITLE": {
+    "message": "翻訳",
+    "description": "Translation section header"
+  },
+  "language_en": {
+    "message": "英語",
+    "description": "English language label"
+  },
+  "language_pl": {
+    "message": "ポーランド語",
+    "description": "Polish language label"
+  },
+  "language_de": {
+    "message": "ドイツ語",
+    "description": "German language label"
+  },
+  "language_es": {
+    "message": "スペイン語",
+    "description": "Spanish language label"
+  },
+  "language_fr": {
+    "message": "フランス語",
+    "description": "French language label"
+  },
+  "language_it": {
+    "message": "イタリア語",
+    "description": "Italian language label"
+  },
+  "language_pt": {
+    "message": "ポルトガル語",
+    "description": "Portuguese language label"
+  },
+  "language_ru": {
+    "message": "ロシア語",
+    "description": "Russian language label"
+  },
+  "language_zh": {
+    "message": "中国語",
+    "description": "Chinese language label"
+  },
+  "language_ja": {
+    "message": "日本語",
+    "description": "Japanese language label"
+  },
+  "language_ko": {
+    "message": "韓国語",
+    "description": "Korean language label"
+  },
+  "language_uk": {
+    "message": "ウクライナ語",
+    "description": "Ukrainian language label"
+  },
+  "API_STATUS_VALID_TOOLTIP": {
+    "message": "APIキーをコピーするにはクリック",
+    "description": "Tooltip for valid API key status"
+  },
+  "API_STATUS_INVALID_TOOLTIP": {
+    "message": "新しいAPIキーを入力するにはクリック",
+    "description": "Tooltip for invalid API key status"
+  },
+  "SELECTED_TEXT_LANGUAGE_LABEL": {
+    "message": "原文の言語:",
+    "description": "Label for selected text language"
+  },
+  "API_KEY_LABEL": {
+    "message": "APIキー:",
+    "description": "Label for API key input"
+  },
+  "COPY_ICON_TOOLTIP": {
+    "message": "クリップボードにコピー",
+    "description": "Tooltip for copy icon"
+  },
+  "HISTORY_CARD_HEADER_TITLE": {
+    "message": "履歴",
+    "description": "History section header"
+  },
+  "HISTORY_RESTORE_BUTTON_TEXT": {
+    "message": "復元",
+    "description": "Restore translation button"
+  },
+  "HISTORY_CLEAR_BUTTON_TEXT": {
+    "message": "履歴を削除",
+    "description": "Clear history button"
+  },
+  "HISTORY_EMPTY_MESSAGE": {
+    "message": "翻訳履歴がありません",
+    "description": "Empty history message"
+  },
+  "HISTORY_DELETE_SELECTED_BUTTON_TEXT": {
+    "message": "選択したものを削除",
+    "description": "Delete selected history items button"
+  },
+  "HISTORY_SELECT_ALL_BUTTON_TEXT": {
+    "message": "すべて選択",
+    "description": "Select all history items button"
+  },
+  "HISTORY_DESELECT_ALL_BUTTON_TEXT": {
+    "message": "すべて選択解除",
+    "description": "Deselect all history items button"
+  },
+  "HISTORY_ITEM_SELECTED_TOOLTIP": {
+    "message": "クリックして選択解除",
+    "description": "Tooltip for selected history item"
+  },
+  "HISTORY_ITEM_UNSELECTED_TOOLTIP": {
+    "message": "クリックして選択",
+    "description": "Tooltip for unselected history item"
+  },
+  "TRANSLATION_MODE_TITLE": {
+    "message": "翻訳",
+    "description": "Translation mode title"
+  },
+  "IMAGE_PROMPT_MODE_TITLE": {
+    "message": "画像プロンプト改善",
+    "description": "Image prompt improvement mode title"
+  },
+  "TEXT_CORRECTION_MODE_TITLE": {
+    "message": "テキスト校正",
+    "description": "Text correction mode title"
+  },
+  "IMAGE_PROMPT_INPUT_PLACEHOLDER": {
+    "message": "改善する画像生成プロンプトを入力",
+    "description": "Image prompt input placeholder"
+  },
+  "IMAGE_PROMPT_OUTPUT_PLACEHOLDER": {
+    "message": "改善されたプロンプト",
+    "description": "Image prompt output placeholder"
+  },
+  "IMPROVE_PROMPT_BUTTON_TEXT": {
+    "message": "プロンプトを改善",
+    "description": "Improve prompt button text"
+  },
+  "IMAGE_PROMPT_LABEL": {
+    "message": "対象言語:",
+    "description": "Image prompt language label"
+  },
+  "TEXT_CORRECTION_INPUT_PLACEHOLDER": {
+    "message": "校正するテキストを入力",
+    "description": "Text correction input placeholder"
+  },
+  "TEXT_CORRECTION_OUTPUT_PLACEHOLDER": {
+    "message": "校正されたテキスト",
+    "description": "Text correction output placeholder"
+  },
+  "CORRECT_TEXT_BUTTON_TEXT": {
+    "message": "テキストを校正",
+    "description": "Correct text button text"
+  },
+  "TEXT_CORRECTION_LABEL": {
+    "message": "言語:",
+    "description": "Text correction language label"
+  }
+} 

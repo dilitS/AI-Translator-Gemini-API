@@ -1,0 +1,250 @@
+{
+  "extension_name": {
+    "message": "AI 번역기 Gemini API",
+    "description": "Extension name"
+  },
+  "extension_description": {
+    "message": "Google Gemini API를 사용하는 AI 번역 확장 프로그램",
+    "description": "Extension description"
+  },
+  "translate_button": {
+    "message": "번역",
+    "description": "Translate button text"
+  },
+  "api_key_placeholder": {
+    "message": "Gemini API 키를 입력하세요",
+    "description": "API key input placeholder"
+  },
+  "translation_failed": {
+    "message": "번역 실패",
+    "description": "Translation error message"
+  },
+  "copy_success": {
+    "message": "텍스트 복사 완료!",
+    "description": "Copy success message"
+  },
+  "API_KEY_VALIDATION_MESSAGE": {
+    "message": "API 키 확인 중...",
+    "description": "API key validation in progress"
+  },
+  "API_KEY_VALID_MESSAGE": {
+    "message": "유효한 API 키",
+    "description": "API key validation success"
+  },
+  "API_KEY_INVALID_MESSAGE": {
+    "message": "유효하지 않은 API 키",
+    "description": "API key validation failed"
+  },
+  "API_KEY_EMPTY_MESSAGE": {
+    "message": "API 키를 입력해 주세요",
+    "description": "Empty API key error"
+  },
+  "TRANSLATION_FAILED_MESSAGE": {
+    "message": "번역 실패",
+    "description": "General translation error"
+  },
+  "TRANSLATION_IN_PROGRESS_MESSAGE": {
+    "message": "번역 중...",
+    "description": "Translation in progress status"
+  },
+  "TRANSLATION_COMPLETE_MESSAGE": {
+    "message": "번역 완료",
+    "description": "Translation success status"
+  },
+  "API_KEY_NOT_SET_MESSAGE": {
+    "message": "API 키를 먼저 설정하세요",
+    "description": "Missing API key error"
+  },
+  "TEXT_TO_TRANSLATE_EMPTY_MESSAGE": {
+    "message": "번역할 텍스트를 입력해 주세요",
+    "description": "Empty input text error"
+  },
+  "TEXT_TO_TRANSLATE_LABEL": {
+    "message": "언어:",
+    "description": "Language selector label"
+  },
+  "TRANSLATE_TEXT_BUTTON_TEXT": {
+    "message": "번역",
+    "description": "Translate button text"
+  },
+  "SAVE_API_KEY_BUTTON_TEXT": {
+    "message": "API 키 저장",
+    "description": "API key save button"
+  },
+  "TEXT_TO_TRANSLATE_PLACEHOLDER": {
+    "message": "번역할 텍스트를 입력하세요",
+    "description": "Input text placeholder"
+  },
+  "TRANSLATED_TEXT_PLACEHOLDER": {
+    "message": "번역 결과",
+    "description": "Translation result placeholder"
+  },
+  "TEXT_TRANSLATION_STATUS_MESSAGE": {
+    "message": "번역 상태",
+    "description": "Translation status header"
+  },
+  "API_KEY_PLACEHOLDER": {
+    "message": "Gemini API 키를 입력하세요",
+    "description": "API key input placeholder"
+  },
+  "API_KEY_CARD_HEADER_TITLE": {
+    "message": "API 키",
+    "description": "API key section header"
+  },
+  "SETTINGS_CARD_HEADER_TITLE": {
+    "message": "설정",
+    "description": "Settings section header"
+  },
+  "TRANSLATION_CARD_HEADER_TITLE": {
+    "message": "번역",
+    "description": "Translation section header"
+  },
+  "language_en": {
+    "message": "영어",
+    "description": "English language label"
+  },
+  "language_pl": {
+    "message": "폴란드어",
+    "description": "Polish language label"
+  },
+  "language_de": {
+    "message": "독일어",
+    "description": "German language label"
+  },
+  "language_es": {
+    "message": "스페인어",
+    "description": "Spanish language label"
+  },
+  "language_fr": {
+    "message": "프랑스어",
+    "description": "French language label"
+  },
+  "language_it": {
+    "message": "이탈리아어",
+    "description": "Italian language label"
+  },
+  "language_pt": {
+    "message": "포르투갈어",
+    "description": "Portuguese language label"
+  },
+  "language_ru": {
+    "message": "러시아어",
+    "description": "Russian language label"
+  },
+  "language_zh": {
+    "message": "중국어",
+    "description": "Chinese language label"
+  },
+  "language_ja": {
+    "message": "일본어",
+    "description": "Japanese language label"
+  },
+  "language_ko": {
+    "message": "한국어",
+    "description": "Korean language label"
+  },
+  "language_uk": {
+    "message": "우크라이나어",
+    "description": "Ukrainian language label"
+  },
+  "API_STATUS_VALID_TOOLTIP": {
+    "message": "API 키 복사하기",
+    "description": "Tooltip for valid API key status"
+  },
+  "API_STATUS_INVALID_TOOLTIP": {
+    "message": "새 API 키 입력하기",
+    "description": "Tooltip for invalid API key status"
+  },
+  "SELECTED_TEXT_LANGUAGE_LABEL": {
+    "message": "원본 언어:",
+    "description": "Label for selected text language"
+  },
+  "API_KEY_LABEL": {
+    "message": "API 키:",
+    "description": "Label for API key input"
+  },
+  "COPY_ICON_TOOLTIP": {
+    "message": "클립보드에 복사",
+    "description": "Tooltip for copy icon"
+  },
+  "HISTORY_CARD_HEADER_TITLE": {
+    "message": "기록",
+    "description": "History section header"
+  },
+  "HISTORY_RESTORE_BUTTON_TEXT": {
+    "message": "복원",
+    "description": "Restore translation button"
+  },
+  "HISTORY_CLEAR_BUTTON_TEXT": {
+    "message": "기록 삭제",
+    "description": "Clear history button"
+  },
+  "HISTORY_EMPTY_MESSAGE": {
+    "message": "번역 기록이 없습니다",
+    "description": "Empty history message"
+  },
+  "HISTORY_DELETE_SELECTED_BUTTON_TEXT": {
+    "message": "선택된 항목 삭제",
+    "description": "Delete selected history items button"
+  },
+  "HISTORY_SELECT_ALL_BUTTON_TEXT": {
+    "message": "모두 선택",
+    "description": "Select all history items button"
+  },
+  "HISTORY_DESELECT_ALL_BUTTON_TEXT": {
+    "message": "모두 선택 해제",
+    "description": "Deselect all history items button"
+  },
+  "HISTORY_ITEM_SELECTED_TOOLTIP": {
+    "message": "클릭하여 선택 해제",
+    "description": "Tooltip for selected history item"
+  },
+  "HISTORY_ITEM_UNSELECTED_TOOLTIP": {
+    "message": "클릭하여 선택",
+    "description": "Tooltip for unselected history item"
+  },
+  "TRANSLATION_MODE_TITLE": {
+    "message": "번역",
+    "description": "Translation mode title"
+  },
+  "IMAGE_PROMPT_MODE_TITLE": {
+    "message": "이미지 프롬프트 개선",
+    "description": "Image prompt improvement mode title"
+  },
+  "TEXT_CORRECTION_MODE_TITLE": {
+    "message": "텍스트 교정",
+    "description": "Text correction mode title"
+  },
+  "IMAGE_PROMPT_INPUT_PLACEHOLDER": {
+    "message": "개선할 이미지 생성 프롬프트를 입력하세요",
+    "description": "Image prompt input placeholder"
+  },
+  "IMAGE_PROMPT_OUTPUT_PLACEHOLDER": {
+    "message": "개선된 프롬프트",
+    "description": "Image prompt output placeholder"
+  },
+  "IMPROVE_PROMPT_BUTTON_TEXT": {
+    "message": "프롬프트 개선",
+    "description": "Improve prompt button text"
+  },
+  "IMAGE_PROMPT_LABEL": {
+    "message": "대상 언어:",
+    "description": "Image prompt language label"
+  },
+  "TEXT_CORRECTION_INPUT_PLACEHOLDER": {
+    "message": "교정할 텍스트를 입력하세요",
+    "description": "Text correction input placeholder"
+  },
+  "TEXT_CORRECTION_OUTPUT_PLACEHOLDER": {
+    "message": "교정된 텍스트",
+    "description": "Text correction output placeholder"
+  },
+  "CORRECT_TEXT_BUTTON_TEXT": {
+    "message": "텍스트 교정",
+    "description": "Correct text button text"
+  },
+  "TEXT_CORRECTION_LABEL": {
+    "message": "언어:",
+    "description": "Text correction language label"
+  }
+} 

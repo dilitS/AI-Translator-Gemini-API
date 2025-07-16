@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Translator</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+
+  <body>
+    <div class="aiGeminiTranslator_container">
+      <div class="aiGeminiTranslator_main-content">
+        <section class="aiGeminiTranslator_card">
+          <div class="aiGeminiTranslator_card-header">
+            <div class="aiGeminiTranslator_header-left">
+              <div class="aiGeminiTranslator_mode-dropdown-container">
+                <div
+                  class="aiGeminiTranslator_custom-dropdown"
+                  id="aiGeminiTranslator_mode-selector"
+                >
+                  <div class="aiGeminiTranslator_dropdown-header">
+                    <span class="aiGeminiTranslator_dropdown-title"
+                      >Translation</span
+                    ><span class="aiGeminiTranslator_dropdown-arrow">▼</span>
+                  </div>
+                  <div class="aiGeminiTranslator_dropdown-options">
+                    <div
+                      class="aiGeminiTranslator_dropdown-option active"
+                      data-value="translation"
+                    >
+                      Translation
+                    </div>
+                    <div
+                      class="aiGeminiTranslator_dropdown-option"
+                      data-value="image-prompt"
+                    >
+                      Image Prompt Improvement
+                    </div>
+                    <div
+                      class="aiGeminiTranslator_dropdown-option"
+                      data-value="text-correction"
+                    >
+                      Text Correction
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="aiGeminiTranslator_api-status-container">
+              <span class="aiGeminiTranslator_api-key-status-icon"></span>
+              <div class="aiGeminiTranslator_api-status-tooltip"></div>
+            </div>
+          </div>
+          <div class="aiGeminiTranslator_card-content">
+            <textarea
+              rows="6"
+              id="aiGeminiTranslator_text-to-translate"
+              class="aiGeminiTranslator_textarea"
+            ></textarea>
+            <div class="aiGeminiTranslator_input-container">
+              <label
+                for="aiGeminiTranslator_text-target-language"
+                id="aiGeminiTranslator_select-label"
+              ></label>
+              <select
+                id="aiGeminiTranslator_text-target-language"
+                class="aiGeminiTranslator_select"
+              ></select>
+              <button
+                id="aiGeminiTranslator_translate-text-button"
+                class="aiGeminiTranslator_button"
+              >
+                Translate
+              </button>
+              <button
+                id="aiGeminiTranslator_test-ocr-button"
+                class="aiGeminiTranslator_button aiGeminiTranslator_secondary"
+                style="margin-left: 8px;"
+                title="Test OCR - Ctrl+Shift+T"
+              >
+                📸 OCR
+              </button>
+            </div>
+            <div class="aiGeminiTranslator_translated-text-container">
+              <textarea
+                id="aiGeminiTranslator_translated-text"
+                class="aiGeminiTranslator_textarea"
+                readonly
+              ></textarea>
+              <span class="aiGeminiTranslator_copy-icon"></span>
+              <div class="aiGeminiTranslator_copy-tooltip"></div>
+            </div>
+            <div
+              class="aiGeminiTranslator_status"
+              id="aiGeminiTranslator_text-translation-status"
+            ></div>
+          </div>
+        </section>
+        <section
+          class="aiGeminiTranslator_card collapsed"
+          role="region"
+          aria-labelledby="settingsHeader"
+        >
+          <div class="aiGeminiTranslator_card-header" id="settingsHeader">
+            <h2 id="aiGeminiTranslator_settings-card-header-title">Settings</h2>
+            <button class="aiGeminiTranslator_collapse-button">
+              <span class="aiGeminiTranslator_collapse-icon"></span>
+            </button>
+          </div>
+          <div class="aiGeminiTranslator_card-content">
+            <div class="aiGeminiTranslator_selected-text-language-container">
+              <label
+                for="aiGeminiTranslator_selected-text-language"
+                id="aiGeminiTranslator_selected-text-language-label"
+              ></label>
+              <select
+                id="aiGeminiTranslator_selected-text-language"
+                class="aiGeminiTranslator_select aiGeminiTranslator_selected-text-language-select"
+              ></select>
+            </div>
+            <div class="aiGeminiTranslator_api-key-container">
+              <label
+                for="aiGeminiTranslator_api-key-input"
+                id="aiGeminiTranslator_api-key-label"
+              ></label>
+              <div class="aiGeminiTranslator_api-key-input-container">
+                <input
+                  type="password"
+                  class="aiGeminiTranslator_input"
+                  id="aiGeminiTranslator_api-key-input"
+                  placeholder="Enter your Gemini-2.5-flash API Key"
+                />
+                <div
+                  class="aiGeminiTranslator_api-key-clear-icon"
+                  title="Remove API Key"
+                ></div>
+              </div>
+
+              <!-- Actions add, check status -->
+              <div class="aiGeminiTranslator_api-key-actions">
+                <button
+                  id="aiGeminiTranslator_save-api-key-button"
+                  class="aiGeminiTranslator_button"
+                ></button>
+                <button
+                  id="aiGeminiTranslator_show-api-status-button"
+                  class="aiGeminiTranslator_button aiGeminiTranslator_secondary"
+                >
+                  View Status
+                </button>
+              </div>
+              <div
+                class="aiGeminiTranslator_api-key-status"
+                id="aiGeminiTranslator_api-key-status"
+              ></div>
+
+              <!-- API Keys Management Section -->
+              <div
+                class="aiGeminiTranslator_api-keys-list"
+                id="aiGeminiTranslator_api-keys-list"
+              >
+                <h4>Managed API Keys</h4>
+                <div
+                  class="aiGeminiTranslator_api-keys-container"
+                  id="aiGeminiTranslator_api-keys-container"
+                >
+                  <!-- API keys will be dynamically inserted here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="aiGeminiTranslator_history-sidebar">
+        <div class="aiGeminiTranslator_history-header">
+          <h3 id="aiGeminiTranslator_history-card-header-title">History</h3>
+          <div class="aiGeminiTranslator_history-controls">
+            <button
+              id="aiGeminiTranslator_select-all-button"
+              class="aiGeminiTranslator_button aiGeminiTranslator_select-button"
+            >
+              Select All
+            </button>
+            <button
+              id="aiGeminiTranslator_delete-selected-button"
+              class="aiGeminiTranslator_button aiGeminiTranslator_delete-button"
+              disabled
+            >
+              Delete Selected
+            </button>
+          </div>
+        </div>
+        <div
+          class="aiGeminiTranslator_history-cards"
+          id="aiGeminiTranslator_history-list"
+        >
+          <!-- History cards will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+    <script type="module" src="popup_new.js"></script>
+  </body>
+</html>
