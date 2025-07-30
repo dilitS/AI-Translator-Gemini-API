@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     deleteSelectedButton: document.getElementById("aiGeminiTranslator_delete-selected-button"),
     apiKeysContainer: document.getElementById("aiGeminiTranslator_api-keys-container"),
     selectLabel: document.getElementById("aiGeminiTranslator_select-label"),
+    ocrButton: document.getElementById("aiGeminiTranslator_test-ocr-button"),
   };
 
   // Initialize text content and placeholders
@@ -128,4 +129,51 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   console.log('Popup initialized successfully');
+
+  if (elements.ocrButton) {
+    elements.ocrButton.addEventListener("click", async () => {
+      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      if (tab) {
+        chrome.tabs.sendMessage(tab.id, { action: "startOCRMode" });
+        window.close();
+      }
+    });
+  }
+
+  // Add selection translation functionality
+  elements.textToTranslateTextarea.addEventListener("mouseup", (e) => {
+    const selection = elements.textToTranslateTextarea.value
+      .substring(
+        elements.textToTranslateTextarea.selectionStart,
+        elements.textToTranslateTextarea.selectionEnd
+      )
+      .trim();
+
+    if (
+      selection &&
+      selection !== elements.textToTranslateTextarea.value.trim()
+    ) {
+      // Only translate selection if it's different from full text
+      translator.translateSelectedTextInPopup(selection);
+    }
+  });
+
+  elements.textToTranslateTextarea.addEventListener("keyup", (e) => {
+    // Handle keyboard selection (Shift + arrows, Ctrl+A, etc.)
+    if (e.shiftKey || e.ctrlKey) {
+      const selection = elements.textToTranslateTextarea.value
+        .substring(
+          elements.textToTranslateTextarea.selectionStart,
+          elements.textToTranslateTextarea.selectionEnd
+        )
+        .trim();
+
+      if (
+        selection &&
+        selection !== elements.textToTranslateTextarea.value.trim()
+      ) {
+        translator.translateSelectedTextInPopup(selection);
+      }
+    }
+  });
 });
