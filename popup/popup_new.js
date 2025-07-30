@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     settingsHeader: document.querySelector("#settingsHeader"),
     apiKeyStatusIcon: document.querySelector(".aiGeminiTranslator_api-key-status-icon"),
     apiKeyClearIcon: document.querySelector(".aiGeminiTranslator_api-key-clear-icon"),
-    copyIcon: document.querySelector(".aiGeminiTranslator_copy-icon"),
+    copyTextButton: document.getElementById("aiGeminiTranslator_copy-text-button"),
     apiStatusTooltip: document.querySelector(".aiGeminiTranslator_api-status-tooltip"),
     selectedTextLanguageSelect: document.getElementById("aiGeminiTranslator_selected-text-language"),
     statusElement: document.getElementById("aiGeminiTranslator_status"),

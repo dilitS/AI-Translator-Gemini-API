@@ -17,9 +17,19 @@ export class Translator {
       });
     }
 
-    if (this.elements.copyIcon) {
-      this.elements.copyIcon.addEventListener('click', () => {
+    if (this.elements.copyTextButton) {
+      this.elements.copyTextButton.addEventListener('click', () => {
         this.copyTranslatedText();
+      });
+    }
+
+    if (this.elements.textToTranslateTextarea) {
+      this.elements.textToTranslateTextarea.addEventListener('keydown', (e) => {
+        // Translate on Ctrl+Enter or Cmd+Enter
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          this.translateText();
+        }
       });
     }
   }
