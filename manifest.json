@@ -43,5 +43,13 @@
       "resources": ["icons/*.png", "icons/*.svg", "popup/popup.html"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "commands": {
+    "_execute_ocr": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+T"
+      },
+      "description": "Start OCR"
+    }
+  }
 }

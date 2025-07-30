@@ -403,7 +403,7 @@ body {
 .aiGeminiTranslator_input-container {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   color: #7a7a7a;
   font-size: 0.8rem;
 }
@@ -483,23 +483,12 @@ body {
   position: relative;
 }
 
-.aiGeminiTranslator_copy-icon {
+#aiGeminiTranslator_copy-text-button {
   position: absolute;
   bottom: 8px;
   right: 8px;
-  width: 16px;
-  height: 16px;
-  background-image: var(--copy-icon);
-  background-size: 16px;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-}
-
-.aiGeminiTranslator_copy-icon:hover {
-  opacity: 1;
+  padding: 4px 8px;
+  font-size: 0.75rem;
 }
 
 .aiGeminiTranslator_copy-tooltip {

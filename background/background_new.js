@@ -191,3 +191,12 @@ console.log("Service worker started.");
 chrome.runtime.onInstalled.addListener(() => {
   console.log("Extension installed.");
 });
+
+chrome.commands.onCommand.addListener(async (command) => {
+  if (command === "_execute_ocr") {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (tab) {
+      chrome.tabs.sendMessage(tab.id, { action: "startOCRMode" });
+    }
+  }
+});
