@@ -30,14 +30,6 @@
     "service_worker": "background/background_new.js",
     "type": "module"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "css": ["content/content.css"],
-      "js": ["content/content_new.js"],
-      "type": "module"
-    }
-  ],
   "web_accessible_resources": [
     {
       "resources": ["icons/*.png", "icons/*.svg", "popup/popup.html"],

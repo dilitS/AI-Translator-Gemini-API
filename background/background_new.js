@@ -188,9 +188,6 @@ async function translateText(text, targetLanguage, sendResponse) {
 }
 
 console.log("Service worker started.");
-chrome.runtime.onInstalled.addListener(() => {
-  console.log("Extension installed.");
-});
 
 chrome.commands.onCommand.addListener(async (command) => {
   if (command === "_execute_ocr") {
@@ -198,5 +195,40 @@ chrome.commands.onCommand.addListener(async (command) => {
     if (tab) {
       chrome.tabs.sendMessage(tab.id, { action: "startOCRMode" });
     }
+  }
+});
+
+async function injectContentScript(tabId) {
+  try {
+    await chrome.scripting.executeScript({
+      target: { tabId: tabId },
+      files: ["content/content_new.js"],
+    });
+    await chrome.scripting.insertCSS({
+      target: { tabId: tabId },
+      files: ["content/content.css"],
+    });
+  } catch (err) {
+    console.error(`failed to inject content script into tab ${tabId}: ${err}`);
+  }
+}
+
+// Inject content script into all existing tabs when the extension is installed/updated
+chrome.runtime.onInstalled.addListener(async (details) => {
+  console.log("Extension installed.");
+  if (details.reason === "install" || details.reason === "update") {
+    const tabs = await chrome.tabs.query({});
+    for (const tab of tabs) {
+      if (tab.url && !tab.url.startsWith("chrome://")) {
+        injectContentScript(tab.id);
+      }
+    }
+  }
+});
+
+// Inject content script into new tabs or when a tab is updated
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === "complete" && tab.url && !tab.url.startsWith("chrome://")) {
+    injectContentScript(tabId);
   }
 });

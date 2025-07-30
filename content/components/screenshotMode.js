@@ -130,7 +130,7 @@ export async function captureScreenshotArea() {
   console.log("Capturing screenshot area...");
   
   if (!state.selectionStart || !state.selectionEnd) {
-    console.log("No selection start or end points");
+    console.log("[OCR] No selection start or end points");
     return;
   }
 
@@ -139,7 +139,7 @@ export async function captureScreenshotArea() {
   const width = Math.abs(state.selectionEnd.x - state.selectionStart.x);
   const height = Math.abs(state.selectionEnd.y - state.selectionStart.y);
 
-  console.log(`Screenshot area: ${left}, ${top}, ${width}x${height}`);
+  console.log(`[OCR] Screenshot area: ${left}, ${top}, ${width}x${height}`);
 
   // Minimum size check
   if (width < 10 || height < 10) {
@@ -166,7 +166,7 @@ export async function captureScreenshotArea() {
     console.log(`Target language: ${targetLang}`);
 
     // Send screenshot request to background script
-    console.log("Sending screenshot request to background script...");
+    console.log("[OCR] Sending screenshot request to background script...");
     chrome.runtime.sendMessage(
       {
         action: "captureAndTranslateScreenshot",
@@ -174,7 +174,7 @@ export async function captureScreenshotArea() {
         targetLanguage: targetLang,
       },
       (response) => {
-        console.log("Received response from background script:", response);
+        console.log("[OCR] Received response from background script:", response);
         exitScreenshotMode();
 
         if (chrome.runtime.lastError) {

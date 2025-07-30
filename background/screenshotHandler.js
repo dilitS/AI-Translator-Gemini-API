@@ -11,26 +11,35 @@ export async function captureAndTranslateScreenshot(
   tabId,
   apiKeyManager
 ) {
-  console.log("captureAndTranslateScreenshot called with:", { area, targetLanguage, tabId });
+  console.log("[OCR] captureAndTranslateScreenshot called with:", { area, targetLanguage, tabId });
   
   let keyInfo = null;
   let attempts = 0;
   const maxAttempts = 3;
 
   try {
-    console.log("Capturing visible tab...");
+    console.log("[OCR] Capturing visible tab...");
     // Capture visible tab
     const screenshot = await chrome.tabs.captureVisibleTab(null, {
       format: "png",
       quality: 100,
     });
     
-    console.log("Screenshot captured, cropping image...");
+    console.log("[OCR] Screenshot captured, cropping image...");
     // Crop the screenshot to the selected area
     const croppedImage = await cropImage(screenshot, area);
 
     // Convert to base64 format for Gemini API
     const base64Image = croppedImage.split(",")[1];
+
+    if (!base64Image || base64Image.length < 100) {
+      console.error("[OCR] Cropped image is empty or too small.");
+      sendResponse({
+        error: "Failed to crop the image.",
+        translatedText: `${config.TRANSLATION_FAILED_MESSAGE}: Failed to crop image.`,
+      });
+      return;
+    }
 
     // Create vision request using the specialized function
     const visionRequest = screenshotTranslationRequest(
@@ -130,7 +139,7 @@ export async function captureAndTranslateScreenshot(
 
 function cropImage(dataUrl, area) {
   return new Promise((resolve, reject) => {
-    console.log("Cropping image with area:", area);
+    console.log("[OCR] Cropping image with area:", area);
     
     try {
       // Create offscreen canvas for service worker compatibility
