@@ -188,9 +188,6 @@ async function translateText(text, targetLanguage, sendResponse) {
 }
 
 console.log("Service worker started.");
-chrome.runtime.onInstalled.addListener(() => {
-  console.log("Extension installed.");
-});
 
 chrome.commands.onCommand.addListener(async (command) => {
   if (command === "_execute_ocr") {

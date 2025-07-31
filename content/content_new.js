@@ -1,5 +1,6 @@
 import { cleanup, addCleanupFunction } from './utils/cleanup.js';
 import { startScreenshotMode } from './components/screenshotMode.js';
+import { translateSelectedText } from './components/translator.js';
 import { 
   handleMouseUp, 
   handleMouseDown, 
@@ -27,6 +28,8 @@ document.addEventListener("mousedown", handleMouseDown);
 document.addEventListener("mousemove", handleMouseMove);
 document.addEventListener("keydown", handleKeyEvents);
 document.addEventListener("contextmenu", handleContextMenu);
+document.addEventListener('gemini-translator-translate', translateSelectedText);
+
 
 // Register cleanup functions
 addCleanupFunction(() => {
@@ -35,6 +38,7 @@ addCleanupFunction(() => {
   document.removeEventListener("mousemove", handleMouseMove);
   document.removeEventListener("keydown", handleKeyEvents);
   document.removeEventListener("contextmenu", handleContextMenu);
+  document.removeEventListener('gemini-translator-translate', translateSelectedText);
 });
 
 console.log('Content script event listeners registered');

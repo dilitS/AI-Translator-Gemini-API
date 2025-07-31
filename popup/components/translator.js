@@ -17,8 +17,8 @@ export class Translator {
       });
     }
 
-    if (this.elements.copyTextButton) {
-      this.elements.copyTextButton.addEventListener('click', () => {
+    if (this.elements.copyIcon) {
+      this.elements.copyIcon.addEventListener('click', () => {
         this.copyTranslatedText();
       });
     }

@@ -9,9 +9,9 @@ export function showTranslationIcon(event) {
       "icons/icon48.png"
     )}" alt="Translate">`;
     
-    // Import translateSelectedText function dynamically to avoid circular dependency
-    import('./translator.js').then(({ translateSelectedText }) => {
-      state.icon.addEventListener("click", translateSelectedText);
+    state.icon.addEventListener("click", () => {
+      const event = new CustomEvent('gemini-translator-translate');
+      document.dispatchEvent(event);
     });
     
     document.body.appendChild(state.icon);

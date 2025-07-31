@@ -34,8 +34,7 @@
     {
       "matches": ["<all_urls>"],
       "css": ["content/content.css"],
-      "js": ["content/content_new.js"],
-      "type": "module"
+      "js": ["content/content_bundle.js"]
     }
   ],
   "web_accessible_resources": [

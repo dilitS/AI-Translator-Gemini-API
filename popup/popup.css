@@ -483,12 +483,23 @@ body {
   position: relative;
 }
 
-#aiGeminiTranslator_copy-text-button {
+.aiGeminiTranslator_copy-icon {
   position: absolute;
   bottom: 8px;
   right: 8px;
-  padding: 4px 8px;
-  font-size: 0.75rem;
+  width: 16px;
+  height: 16px;
+  background-image: var(--copy-icon);
+  background-size: 16px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.aiGeminiTranslator_copy-icon:hover {
+  opacity: 1;
 }
 
 .aiGeminiTranslator_copy-tooltip {
