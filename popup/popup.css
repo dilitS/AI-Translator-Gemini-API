@@ -489,13 +489,11 @@ body {
   right: 8px;
   width: 16px;
   height: 16px;
-  background-image: var(--copy-icon);
-  background-size: 16px;
-  background-repeat: no-repeat;
   cursor: pointer;
   opacity: 0.5;
   transition: opacity 0.3s ease;
   z-index: 1;
+  fill: #9e9e9e;
 }
 
 .aiGeminiTranslator_copy-icon:hover {

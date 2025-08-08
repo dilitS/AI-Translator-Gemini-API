@@ -1367,9 +1367,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     "--invalid-icon",
     `url("${config.INVALID_ICON_SVG}")`
   );
-  document.documentElement.style.setProperty(
-    "--copy-icon",
-    `url("${config.COPY_ICON_SVG}")`
-  );
   document.documentElement.style.setProperty("--copy-error-color", "#ff4444");
 });
