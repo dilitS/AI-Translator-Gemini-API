@@ -108,10 +108,10 @@ const handleMouseUp = async (event) => {
         try {
           // Check if chrome.storage is available
           if (chrome && chrome.storage && chrome.storage.local) {
-            const { selectedTextLanguage } = await chrome.storage.local.get([
-              "selectedTextLanguage",
+            const { textTargetLanguage } = await chrome.storage.local.get([
+              "textTargetLanguage",
             ]);
-            targetLanguage = selectedTextLanguage || "English";
+            targetLanguage = textTargetLanguage || "English";
           } else {
             // Fallback if storage is not available
             targetLanguage = "English";
@@ -559,10 +559,10 @@ async function captureScreenshotArea() {
     let targetLang = "English";
     try {
       if (chrome && chrome.storage && chrome.storage.local) {
-        const { selectedTextLanguage } = await chrome.storage.local.get([
-          "selectedTextLanguage",
+        const { textTargetLanguage } = await chrome.storage.local.get([
+          "textTargetLanguage",
         ]);
-        targetLang = selectedTextLanguage || "English";
+        targetLang = textTargetLanguage || "English";
       }
     } catch (error) {
       console.warn('Failed to get language setting for screenshot, using default:', error);

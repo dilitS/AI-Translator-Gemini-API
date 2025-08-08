@@ -479,10 +479,10 @@ const handleMouseUp = async (event) => {
       if (selection && selection.rangeCount > 0) {
         try {
           if (chrome && chrome.storage && chrome.storage.local) {
-            const { textTargetLanguage } = await chrome.storage.local.get(["textTargetLanguage"]);
+            const { selectedTextLanguage } = await chrome.storage.local.get(["selectedTextLanguage"]);
             updateState({
               selectedText,
-              targetLanguage: textTargetLanguage || "English"
+              targetLanguage: selectedTextLanguage || "English"
             });
           } else {
             updateState({
