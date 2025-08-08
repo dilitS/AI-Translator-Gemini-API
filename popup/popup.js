@@ -401,6 +401,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       sourceLanguage,
       targetLanguage,
       timestamp: Date.now(),
+      favorite: false, // Add favorite property
     };
 
     // Add to beginning and limit to 20 items
@@ -416,8 +417,31 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Selected history items tracking
   let selectedHistoryItems = new Set();
 
+  async function toggleFavoriteStatus(itemId) {
+    const storageData = await safeStorageGet(["translationHistory"]);
+    let translationHistory = storageData.translationHistory || [];
+
+    const itemIndex = translationHistory.findIndex((item) => item.id === itemId);
+    if (itemIndex > -1) {
+      // Toggle favorite status
+      translationHistory[itemIndex].favorite =
+        !translationHistory[itemIndex].favorite;
+
+      await safeStorageSet({ translationHistory: translationHistory });
+      // Re-render the list to reflect the change
+      loadTranslationHistory();
+    }
+  }
+
   function renderHistoryList(history) {
     if (!elements.historyList) return;
+
+    // Sort history: favorites first, then by timestamp
+    history.sort((a, b) => {
+      if (a.favorite && !b.favorite) return -1;
+      if (!a.favorite && b.favorite) return 1;
+      return b.timestamp - a.timestamp; // Most recent first
+    });
 
     elements.historyList.innerHTML = "";
 
@@ -490,16 +514,40 @@ document.addEventListener("DOMContentLoaded", async () => {
       contentDiv.appendChild(translatedDiv);
       contentDiv.appendChild(langDiv);
 
-      historyCard.appendChild(checkbox);
+      const actionsDiv = document.createElement("div");
+      actionsDiv.className = "aiGeminiTranslator_history-actions";
+      actionsDiv.appendChild(checkbox);
+
+      const starIcon = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg"
+      );
+      starIcon.setAttribute("class", "aiGeminiTranslator_history-favorite-icon");
+      starIcon.setAttribute("viewBox", "0 0 24 24");
+      starIcon.innerHTML = `<path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>`;
+      actionsDiv.appendChild(starIcon);
+
+      historyCard.appendChild(actionsDiv);
       historyCard.appendChild(contentDiv);
 
       // Add click handler for content restoration
       contentDiv.addEventListener("click", () => restoreFromHistory(item));
 
+      // Add click handler for favorite icon
+      starIcon.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleFavoriteStatus(item.id);
+      });
+
       // Apply selection state
       if (selectedHistoryItems.has(item.id)) {
         historyCard.classList.add("selected");
         checkbox.classList.add("checked");
+      }
+
+      // Apply favorite state
+      if (item.favorite) {
+        starIcon.classList.add("favorited");
       }
 
       elements.historyList.appendChild(historyCard);

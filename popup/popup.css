@@ -1021,4 +1021,29 @@ body {
   transition: fill 0.3s ease;
 }
 
+.aiGeminiTranslator_history-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-right: 8px;
+}
+
+.aiGeminiTranslator_history-favorite-icon {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  fill: #666; /* Default color for non-favorited */
+  transition: all 0.2s ease;
+}
+
+.aiGeminiTranslator_history-favorite-icon:hover {
+  fill: #ffeb3b; /* Gold color on hover */
+  transform: scale(1.2);
+}
+
+.aiGeminiTranslator_history-favorite-icon.favorited {
+  fill: #ffc107; /* Solid gold for favorited */
+}
+
 /*# sourceMappingURL=popup.css.map */
