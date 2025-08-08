@@ -144,8 +144,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     ),
     statusElement: document.getElementById("aiGeminiTranslator_status"),
     historyList: document.getElementById("aiGeminiTranslator_history-list"),
-    selectAllButton: document.getElementById(
-      "aiGeminiTranslator_select-all-button"
+    selectAllCheckbox: document.getElementById(
+      "aiGeminiTranslator_select-all-checkbox"
+    ),
+    selectAllLabel: document.getElementById(
+      "aiGeminiTranslator_select-all-label"
     ),
     deleteSelectedButton: document.getElementById(
       "aiGeminiTranslator_delete-selected-button"
@@ -543,15 +546,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     const hasItems = totalItems > 0;
 
     elements.deleteSelectedButton.disabled = !hasSelection;
-    elements.selectAllButton.disabled = !hasItems;
+    elements.selectAllCheckbox.disabled = !hasItems;
 
-    // Update select all button text
     if (hasItems) {
-      const allSelected =
-        selectedHistoryItems.size === totalItems && totalItems > 0;
-      elements.selectAllButton.textContent = allSelected
-        ? chrome.i18n.getMessage("HISTORY_DESELECT_ALL_BUTTON_TEXT")
-        : chrome.i18n.getMessage("HISTORY_SELECT_ALL_BUTTON_TEXT");
+      const allSelected = selectedHistoryItems.size === totalItems;
+      if (allSelected) {
+        elements.selectAllCheckbox.checked = true;
+        elements.selectAllCheckbox.indeterminate = false;
+      } else if (hasSelection) {
+        elements.selectAllCheckbox.checked = false;
+        elements.selectAllCheckbox.indeterminate = true;
+      } else {
+        elements.selectAllCheckbox.checked = false;
+        elements.selectAllCheckbox.indeterminate = false;
+      }
+    } else {
+      elements.selectAllCheckbox.checked = false;
+      elements.selectAllCheckbox.indeterminate = false;
     }
   }
 
@@ -559,21 +570,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const historyCards = elements.historyList.querySelectorAll(
       ".aiGeminiTranslator_history-card[data-item-id]"
     );
-    const allSelected =
-      selectedHistoryItems.size === historyCards.length &&
-      historyCards.length > 0;
+    const shouldSelectAll = elements.selectAllCheckbox.checked;
 
-    if (allSelected) {
-      // Deselect all
-      selectedHistoryItems.clear();
-      historyCards.forEach((card) => {
-        card.classList.remove("selected");
-        const checkbox = card.querySelector(
-          ".aiGeminiTranslator_history-checkbox"
-        );
-        if (checkbox) checkbox.classList.remove("checked");
-      });
-    } else {
+    if (shouldSelectAll) {
       // Select all
       historyCards.forEach((card) => {
         const itemId = card.dataset.itemId;
@@ -585,6 +584,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           );
           if (checkbox) checkbox.classList.add("checked");
         }
+      });
+    } else {
+      // Deselect all
+      selectedHistoryItems.clear();
+      historyCards.forEach((card) => {
+        card.classList.remove("selected");
+        const checkbox = card.querySelector(
+          ".aiGeminiTranslator_history-checkbox"
+        );
+        if (checkbox) checkbox.classList.remove("checked");
       });
     }
 
@@ -1238,7 +1247,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   );
 
   // History event listeners
-  elements.selectAllButton.addEventListener("click", selectAllHistoryItems);
+  elements.selectAllCheckbox.addEventListener("change", selectAllHistoryItems);
   elements.deleteSelectedButton.addEventListener(
     "click",
     deleteSelectedHistoryItems

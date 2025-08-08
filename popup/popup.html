@@ -185,18 +185,34 @@
         <div class="aiGeminiTranslator_history-header">
           <h3 id="aiGeminiTranslator_history-card-header-title">History</h3>
           <div class="aiGeminiTranslator_history-controls">
-            <button
-              id="aiGeminiTranslator_select-all-button"
-              class="aiGeminiTranslator_button aiGeminiTranslator_select-button"
-            >
-              Select All
-            </button>
+            <div class="aiGeminiTranslator_select-all-container">
+              <input
+                type="checkbox"
+                id="aiGeminiTranslator_select-all-checkbox"
+                class="aiGeminiTranslator_history-checkbox-input"
+              />
+              <label
+                for="aiGeminiTranslator_select-all-checkbox"
+                id="aiGeminiTranslator_select-all-label"
+                class="aiGeminiTranslator_select-all-label"
+                >Select All</label
+              >
+            </div>
             <button
               id="aiGeminiTranslator_delete-selected-button"
               class="aiGeminiTranslator_button aiGeminiTranslator_delete-button"
               disabled
+              title="Delete Selected"
             >
-              Delete Selected
+              <svg
+                class="aiGeminiTranslator_delete-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                />
+              </svg>
             </button>
           </div>
         </div>

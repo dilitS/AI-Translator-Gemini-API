@@ -77,34 +77,6 @@ body {
   gap: 4px;
 }
 
-.aiGeminiTranslator_select-button,
-.aiGeminiTranslator_delete-button {
-  padding: 0.3rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  padding: 4px 6px;
-  font-size: 0.65rem;
-  flex: 1;
-  min-width: 0;
-}
-
-.aiGeminiTranslator_select-button {
-  background-color: #6a4c93;
-}
-
-.aiGeminiTranslator_select-button:hover {
-  background-color: rgb(131.1793721973, 99.4304932735, 174.5695067265);
-}
-
-.aiGeminiTranslator_delete-button {
-  background-color: #8b3a3a;
-}
-
-.aiGeminiTranslator_delete-button:hover {
-  background-color: rgb(174.9847715736, 73.0152284264, 73.0152284264);
-}
 
 .aiGeminiTranslator_delete-button:disabled {
   background-color: #444;
@@ -987,6 +959,66 @@ body {
   color: #7a7a7a;
   font-size: 0.65rem;
   line-height: 1.4;
+}
+
+.aiGeminiTranslator_history-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.aiGeminiTranslator_select-all-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.aiGeminiTranslator_history-checkbox-input {
+  cursor: pointer;
+}
+
+.aiGeminiTranslator_select-all-label {
+  font-size: 0.7rem;
+  color: #c0c0c0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.aiGeminiTranslator_delete-button {
+  background-color: transparent;
+  border: 1px solid #8b3a3a;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+
+.aiGeminiTranslator_delete-button:hover {
+  background-color: #8b3a3a;
+}
+
+.aiGeminiTranslator_delete-button:hover .aiGeminiTranslator_delete-icon {
+  fill: #ffffff;
+}
+
+.aiGeminiTranslator_delete-button:disabled {
+  border-color: #444;
+  background-color: transparent;
+}
+
+.aiGeminiTranslator_delete-button:disabled .aiGeminiTranslator_delete-icon {
+  fill: #666;
+}
+
+.aiGeminiTranslator_delete-icon {
+  width: 16px;
+  height: 16px;
+  fill: #8b3a3a;
+  transition: fill 0.3s ease;
 }
 
 /*# sourceMappingURL=popup.css.map */
