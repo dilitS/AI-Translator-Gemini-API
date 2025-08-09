@@ -436,14 +436,7 @@ function startScreenshotMode() {
   // Create selection rectangle
   const selectionRect = document.createElement("div");
   selectionRect.className = "aiGeminiTranslator_selection-rect";
-  selectionRect.style.cssText = `
-        position: absolute !important;
-        border: 3px dashed #4CAF50 !important;
-        background: rgba(76, 175, 80, 0.2) !important;
-        display: none !important;
-        pointer-events: none !important;
-        box-sizing: border-box !important;
-    `;
+  selectionRect.style.display = "none";
 
   screenshotSelector.appendChild(selectionRect);
   document.body.appendChild(screenshotSelector);
@@ -477,12 +470,7 @@ function updateSelectionRectangle(event) {
   const height = Math.abs(currentY - (selectionStart.y - window.scrollY));
 
   // Apply styles directly to ensure visibility
-  rect.style.position = "absolute";
-  rect.style.border = "3px dashed #4CAF50";
-  rect.style.background = "rgba(76, 175, 80, 0.2)";
   rect.style.display = "block";
-  rect.style.pointerEvents = "none";
-  rect.style.boxSizing = "border-box";
   rect.style.left = `${left}px`;
   rect.style.top = `${top}px`;
   rect.style.width = `${width}px`;
@@ -531,7 +519,7 @@ function showScreenshotInstructions() {
 
 async function captureScreenshotArea() {
   console.log("Capturing screenshot area...");
-  
+
   if (!selectionStart || !selectionEnd) {
     console.log("No selection start or end points");
     return;
@@ -544,34 +532,32 @@ async function captureScreenshotArea() {
 
   console.log(`Screenshot area: ${left}, ${top}, ${width}x${height}`);
 
-  // Minimum size check
   if (width < 10 || height < 10) {
     console.log("Area too small, exiting screenshot mode");
     exitScreenshotMode();
     return;
   }
 
-  try {
-    // Show loading state
-    showLoadingOverlay();
+  // Use a single dialog for loading and results
+  const ocrDialog = showOcrDialog();
 
-    // Get target language
+  try {
     let targetLang = "English";
     try {
-      if (chrome && chrome.storage && chrome.storage.local) {
-        const { textTargetLanguage } = await chrome.storage.local.get([
-          "textTargetLanguage",
-        ]);
-        targetLang = textTargetLanguage || "English";
-      }
+      const { textTargetLanguage } = await chrome.storage.local.get([
+        "textTargetLanguage",
+      ]);
+      targetLang = textTargetLanguage || "English";
     } catch (error) {
-      console.warn('Failed to get language setting for screenshot, using default:', error);
+      console.warn(
+        "Failed to get language setting for screenshot, using default:",
+        error
+      );
     }
-    
-    console.log(`Target language: ${targetLang}`);
 
-    // Send screenshot request to background script
+    console.log(`Target language: ${targetLang}`);
     console.log("Sending screenshot request to background script...");
+
     chrome.runtime.sendMessage(
       {
         action: "captureAndTranslateScreenshot",
@@ -580,58 +566,88 @@ async function captureScreenshotArea() {
       },
       (response) => {
         console.log("Received response from background script:", response);
-        exitScreenshotMode();
+        // Don't exit screenshot mode here, as the dialog is now the main UI
+
+        const contentEl = ocrDialog.querySelector(".aiGeminiTranslator_ocr-content");
+        if (!contentEl) return;
 
         if (chrome.runtime.lastError) {
           console.error("Runtime error:", chrome.runtime.lastError);
-          showDialogBox(chrome.i18n.getMessage("TRANSLATION_FAILED_MESSAGE") || "Translation failed");
+          contentEl.textContent =
+            chrome.i18n.getMessage("TRANSLATION_FAILED_MESSAGE") ||
+            "Translation failed";
+          ocrDialog.classList.add("error");
           return;
         }
 
         if (response?.translatedText) {
-          console.log("Translation successful:", response.translatedText);
-          showDialogBox(response.translatedText);
+          contentEl.textContent = response.translatedText;
+          ocrDialog.classList.remove("loading");
         } else {
-          console.log("Translation failed:", response);
-          showDialogBox(
-            (chrome.i18n.getMessage("TRANSLATION_FAILED_MESSAGE") || "Translation failed") +
-              (response?.error ? ": " + response.error : "")
-          );
+          contentEl.textContent =
+            (chrome.i18n.getMessage("TRANSLATION_FAILED_MESSAGE") ||
+              "Translation failed") +
+            (response?.error ? ": " + response.error : "");
+          ocrDialog.classList.add("error");
         }
       }
     );
   } catch (error) {
     console.error("Screenshot capture error:", error);
-    exitScreenshotMode();
-    showDialogBox(chrome.i18n.getMessage("TRANSLATION_FAILED_MESSAGE") || "Translation failed");
+    const contentEl = ocrDialog.querySelector(".aiGeminiTranslator_ocr-content");
+    if(contentEl) {
+        contentEl.textContent =
+            chrome.i18n.getMessage("TRANSLATION_FAILED_MESSAGE") ||
+            "Translation failed";
+        ocrDialog.classList.add("error");
+    }
+  } finally {
+      // Clean up the selection overlay, but not the dialog
+      if (screenshotSelector) {
+        screenshotSelector.remove();
+        screenshotSelector = null;
+      }
+      isScreenshotMode = false;
+      document.body.style.cursor = "";
+      selectionStart = null;
+      selectionEnd = null;
   }
 }
 
-function showLoadingOverlay() {
-  const loading = document.createElement("div");
-  loading.className = "aiGeminiTranslator_screenshot-loading";
-  loading.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #333;
-        color: white;
-        padding: 20px;
-        border-radius: 10px;
-        z-index: 10002;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    `;
-  loading.innerHTML = `
-        <div style="margin-bottom: 10px;">📸 Capturing & Translating...</div>
-        <div class="aiGeminiTranslator_loadingGeminiTranslation"></div>
-    `;
-
-  if (screenshotSelector) {
-    screenshotSelector.appendChild(loading);
+function showOcrDialog() {
+  // If a dialog already exists, remove it
+  if (dialogBox) {
+    removeDialogBox();
   }
+
+  dialogBox = document.createElement("div");
+  dialogBox.className = "aiGeminiTranslator_translation-dialog loading"; // Start with loading class
+
+  // Center dialog on screen
+  dialogBox.style.position = "fixed";
+  dialogBox.style.left = "50%";
+  dialogBox.style.top = "50%";
+  dialogBox.style.transform = "translate(-50%, -50%)";
+  dialogBox.style.zIndex = "999999";
+
+  dialogBox.innerHTML = `
+    <div class="aiGeminiTranslator_dialog-header">
+        <span>OCR Translation</span>
+        <button class="aiGeminiTranslator_dialog-close">×</button>
+    </div>
+    <div class="aiGeminiTranslator_ocr-content">
+        <div class="aiGeminiTranslator_loadingGeminiTranslation"></div>
+        <span>Translating...</span>
+    </div>
+  `;
+
+  document.body.appendChild(dialogBox);
+
+  // Add close functionality
+  const closeButton = dialogBox.querySelector(".aiGeminiTranslator_dialog-close");
+  closeButton.addEventListener("click", removeDialogBox);
+
+  return dialogBox;
 }
 
 function exitScreenshotMode() {
