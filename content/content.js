@@ -9,6 +9,7 @@ let isScriptActive = true;
 let isTranslationInProgress = false;
 let imageOverlay = null;
 let isImageSelectionMode = false;
+let isOcrInProgress = false;
 let screenshotSelector = null;
 let isScreenshotMode = false;
 let selectionStart = null;
@@ -379,6 +380,7 @@ function removeDialogBox() {
     dialogBox.remove();
     dialogBox = null;
   }
+  isOcrInProgress = false; // Also release lock on manual close
 
   if (icon) {
     icon.removeEventListener("click", translateSelectedText);
@@ -404,14 +406,14 @@ const createDOMElement = (type, classes, attributes) => {
 
 // Screenshot translation functions
 function startScreenshotMode() {
-  console.log("Starting screenshot mode...");
-  
-  if (isScreenshotMode) {
-    console.log("Screenshot mode already active");
+  if (isScreenshotMode || isOcrInProgress) {
+    console.log("Screenshot mode or OCR is already active. Exiting.");
     return;
   }
+  console.log("Starting screenshot mode...");
 
   isScreenshotMode = true;
+  isOcrInProgress = true;
   document.body.style.cursor = "crosshair";
 
   // Create overlay
@@ -565,6 +567,7 @@ async function captureScreenshotArea() {
         targetLanguage: targetLang,
       },
       (response) => {
+        isOcrInProgress = false; // Release lock
         console.log("Received response from background script:", response);
         // Don't exit screenshot mode here, as the dialog is now the main UI
 
@@ -593,6 +596,7 @@ async function captureScreenshotArea() {
       }
     );
   } catch (error) {
+    isOcrInProgress = false; // Release lock
     console.error("Screenshot capture error:", error);
     const contentEl = ocrDialog.querySelector(".aiGeminiTranslator_ocr-content");
     if(contentEl) {
