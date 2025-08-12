@@ -144,8 +144,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     ),
     statusElement: document.getElementById("aiGeminiTranslator_status"),
     historyList: document.getElementById("aiGeminiTranslator_history-list"),
-    selectAllButton: document.getElementById(
-      "aiGeminiTranslator_select-all-button"
+    selectAllCheckbox: document.getElementById(
+      "aiGeminiTranslator_select-all-checkbox"
+    ),
+    selectAllLabel: document.getElementById(
+      "aiGeminiTranslator_select-all-label"
     ),
     deleteSelectedButton: document.getElementById(
       "aiGeminiTranslator_delete-selected-button"
@@ -398,6 +401,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       sourceLanguage,
       targetLanguage,
       timestamp: Date.now(),
+      favorite: false, // Add favorite property
     };
 
     // Add to beginning and limit to 20 items
@@ -413,8 +417,31 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Selected history items tracking
   let selectedHistoryItems = new Set();
 
+  async function toggleFavoriteStatus(itemId) {
+    const storageData = await safeStorageGet(["translationHistory"]);
+    let translationHistory = storageData.translationHistory || [];
+
+    const itemIndex = translationHistory.findIndex((item) => item.id === itemId);
+    if (itemIndex > -1) {
+      // Toggle favorite status
+      translationHistory[itemIndex].favorite =
+        !translationHistory[itemIndex].favorite;
+
+      await safeStorageSet({ translationHistory: translationHistory });
+      // Re-render the list to reflect the change
+      loadTranslationHistory();
+    }
+  }
+
   function renderHistoryList(history) {
     if (!elements.historyList) return;
+
+    // Sort history: favorites first, then by timestamp
+    history.sort((a, b) => {
+      if (a.favorite && !b.favorite) return -1;
+      if (!a.favorite && b.favorite) return 1;
+      return b.timestamp - a.timestamp; // Most recent first
+    });
 
     elements.historyList.innerHTML = "";
 
@@ -487,16 +514,40 @@ document.addEventListener("DOMContentLoaded", async () => {
       contentDiv.appendChild(translatedDiv);
       contentDiv.appendChild(langDiv);
 
-      historyCard.appendChild(checkbox);
+      const actionsDiv = document.createElement("div");
+      actionsDiv.className = "aiGeminiTranslator_history-actions";
+      actionsDiv.appendChild(checkbox);
+
+      const starIcon = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg"
+      );
+      starIcon.setAttribute("class", "aiGeminiTranslator_history-favorite-icon");
+      starIcon.setAttribute("viewBox", "0 0 24 24");
+      starIcon.innerHTML = `<path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>`;
+      actionsDiv.appendChild(starIcon);
+
+      historyCard.appendChild(actionsDiv);
       historyCard.appendChild(contentDiv);
 
       // Add click handler for content restoration
       contentDiv.addEventListener("click", () => restoreFromHistory(item));
 
+      // Add click handler for favorite icon
+      starIcon.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleFavoriteStatus(item.id);
+      });
+
       // Apply selection state
       if (selectedHistoryItems.has(item.id)) {
         historyCard.classList.add("selected");
         checkbox.classList.add("checked");
+      }
+
+      // Apply favorite state
+      if (item.favorite) {
+        starIcon.classList.add("favorited");
       }
 
       elements.historyList.appendChild(historyCard);
@@ -543,15 +594,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     const hasItems = totalItems > 0;
 
     elements.deleteSelectedButton.disabled = !hasSelection;
-    elements.selectAllButton.disabled = !hasItems;
+    elements.selectAllCheckbox.disabled = !hasItems;
 
-    // Update select all button text
     if (hasItems) {
-      const allSelected =
-        selectedHistoryItems.size === totalItems && totalItems > 0;
-      elements.selectAllButton.textContent = allSelected
-        ? chrome.i18n.getMessage("HISTORY_DESELECT_ALL_BUTTON_TEXT")
-        : chrome.i18n.getMessage("HISTORY_SELECT_ALL_BUTTON_TEXT");
+      const allSelected = selectedHistoryItems.size === totalItems;
+      if (allSelected) {
+        elements.selectAllCheckbox.checked = true;
+        elements.selectAllCheckbox.indeterminate = false;
+      } else if (hasSelection) {
+        elements.selectAllCheckbox.checked = false;
+        elements.selectAllCheckbox.indeterminate = true;
+      } else {
+        elements.selectAllCheckbox.checked = false;
+        elements.selectAllCheckbox.indeterminate = false;
+      }
+    } else {
+      elements.selectAllCheckbox.checked = false;
+      elements.selectAllCheckbox.indeterminate = false;
     }
   }
 
@@ -559,21 +618,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const historyCards = elements.historyList.querySelectorAll(
       ".aiGeminiTranslator_history-card[data-item-id]"
     );
-    const allSelected =
-      selectedHistoryItems.size === historyCards.length &&
-      historyCards.length > 0;
+    const shouldSelectAll = elements.selectAllCheckbox.checked;
 
-    if (allSelected) {
-      // Deselect all
-      selectedHistoryItems.clear();
-      historyCards.forEach((card) => {
-        card.classList.remove("selected");
-        const checkbox = card.querySelector(
-          ".aiGeminiTranslator_history-checkbox"
-        );
-        if (checkbox) checkbox.classList.remove("checked");
-      });
-    } else {
+    if (shouldSelectAll) {
       // Select all
       historyCards.forEach((card) => {
         const itemId = card.dataset.itemId;
@@ -585,6 +632,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           );
           if (checkbox) checkbox.classList.add("checked");
         }
+      });
+    } else {
+      // Deselect all
+      selectedHistoryItems.clear();
+      historyCards.forEach((card) => {
+        card.classList.remove("selected");
+        const checkbox = card.querySelector(
+          ".aiGeminiTranslator_history-checkbox"
+        );
+        if (checkbox) checkbox.classList.remove("checked");
       });
     }
 
@@ -1238,7 +1295,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   );
 
   // History event listeners
-  elements.selectAllButton.addEventListener("click", selectAllHistoryItems);
+  elements.selectAllCheckbox.addEventListener("change", selectAllHistoryItems);
   elements.deleteSelectedButton.addEventListener(
     "click",
     deleteSelectedHistoryItems
@@ -1366,10 +1423,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.documentElement.style.setProperty(
     "--invalid-icon",
     `url("${config.INVALID_ICON_SVG}")`
-  );
-  document.documentElement.style.setProperty(
-    "--copy-icon",
-    `url("${config.COPY_ICON_SVG}")`
   );
   document.documentElement.style.setProperty("--copy-error-color", "#ff4444");
 });
