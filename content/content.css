@@ -1,4 +1,7 @@
-.aiGeminiTranslator_translation-selected-text-icon {
+div.aiGeminiTranslator_translation-selected-text-icon {
+  all: initial; /* Reset all inherited styles */
+
+  /* Re-declare all necessary properties */
   position: absolute;
   cursor: pointer;
   z-index: 10000;
@@ -9,10 +12,12 @@
   font-family: "Roboto", sans-serif;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s ease-in-out;
+  animation: aiGeminiTranslator_pulse 1.5s infinite; /* Add pulsing animation */
 }
 
-.aiGeminiTranslator_translation-selected-text-icon:hover {
+div.aiGeminiTranslator_translation-selected-text-icon:hover {
   transform: scale(1.1);
+  animation-play-state: paused; /* Pause animation on hover for better interaction */
 }
 
 .aiGeminiTranslator_translation-selected-text-icon
@@ -126,13 +131,21 @@
   visibility: visible !important;
 }
 
+@keyframes marching-ants {
+  to {
+    background-position: 100% 0;
+  }
+}
+
 .aiGeminiTranslator_selection-rect {
-  position: absolute !important;
-  border: 3px dashed #4caf50 !important;
-  background: rgba(76, 175, 80, 0.2) !important;
-  display: none !important;
-  pointer-events: none !important;
-  box-sizing: border-box !important;
+  position: absolute;
+  pointer-events: none;
+  box-sizing: border-box;
+  border: 1px solid #fff;
+  background-image: linear-gradient(0deg, #000 50%, transparent 50%);
+  background-size: 8px 1px;
+  animation: marching-ants 0.5s linear infinite;
+  box-shadow: 0 0 0 1px #000;
 }
 
 .aiGeminiTranslator_screenshot-instructions {
@@ -150,17 +163,38 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
 }
 
-.aiGeminiTranslator_screenshot-loading {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  background: #333 !important;
-  color: white !important;
-  padding: 20px !important;
-  border-radius: 10px !important;
-  z-index: 10002 !important;
-  font-family: Arial, sans-serif !important;
-  text-align: center !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+.aiGeminiTranslator_dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: bold;
+  color: #333;
+}
+
+.aiGeminiTranslator_dialog-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+}
+.aiGeminiTranslator_dialog-close:hover {
+  color: #000;
+}
+
+.aiGeminiTranslator_ocr-content {
+  padding: 16px;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.aiGeminiTranslator_translation-dialog.loading .aiGeminiTranslator_ocr-content {
+  color: #888;
 }

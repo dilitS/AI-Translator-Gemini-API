@@ -77,34 +77,6 @@ body {
   gap: 4px;
 }
 
-.aiGeminiTranslator_select-button,
-.aiGeminiTranslator_delete-button {
-  padding: 0.3rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  padding: 4px 6px;
-  font-size: 0.65rem;
-  flex: 1;
-  min-width: 0;
-}
-
-.aiGeminiTranslator_select-button {
-  background-color: #6a4c93;
-}
-
-.aiGeminiTranslator_select-button:hover {
-  background-color: rgb(131.1793721973, 99.4304932735, 174.5695067265);
-}
-
-.aiGeminiTranslator_delete-button {
-  background-color: #8b3a3a;
-}
-
-.aiGeminiTranslator_delete-button:hover {
-  background-color: rgb(174.9847715736, 73.0152284264, 73.0152284264);
-}
 
 .aiGeminiTranslator_delete-button:disabled {
   background-color: #444;
@@ -479,7 +451,7 @@ body {
   background-color: #8a5cb8;
 }
 
-.aiGeminiTranslator_translated-text-container {
+.aiGeminiTranslator_textarea-wrapper {
   position: relative;
 }
 
@@ -489,13 +461,11 @@ body {
   right: 8px;
   width: 16px;
   height: 16px;
-  background-image: var(--copy-icon);
-  background-size: 16px;
-  background-repeat: no-repeat;
   cursor: pointer;
   opacity: 0.5;
   transition: opacity 0.3s ease;
   z-index: 1;
+  fill: #9e9e9e;
 }
 
 .aiGeminiTranslator_copy-icon:hover {
@@ -991,4 +961,148 @@ body {
   line-height: 1.4;
 }
 
+.aiGeminiTranslator_history-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.aiGeminiTranslator_select-all-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.aiGeminiTranslator_history-checkbox-input {
+  cursor: pointer;
+}
+
+.aiGeminiTranslator_select-all-label {
+  font-size: 0.7rem;
+  color: #c0c0c0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.aiGeminiTranslator_delete-button {
+  background-color: transparent;
+  border: none; /* Remove border */
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px; /* Add a slight radius for the hover effect */
+}
+
+.aiGeminiTranslator_delete-button:hover {
+  background-color: #555; /* Use a neutral dark hover */
+}
+
+.aiGeminiTranslator_delete-button:hover .aiGeminiTranslator_delete-icon {
+  fill: #ff4444; /* Make icon red on hover */
+}
+
+.aiGeminiTranslator_delete-button:disabled {
+  background-color: transparent;
+}
+
+.aiGeminiTranslator_delete-button:disabled .aiGeminiTranslator_delete-icon {
+  fill: #666;
+}
+
+.aiGeminiTranslator_delete-icon {
+  width: 16px;
+  height: 16px;
+  fill: #8b3a3a;
+  transition: fill 0.3s ease;
+}
+
+.aiGeminiTranslator_history-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-right: 8px;
+}
+
+.aiGeminiTranslator_history-favorite-icon {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  fill: #666; /* Default color for non-favorited */
+  transition: all 0.2s ease;
+}
+
+.aiGeminiTranslator_history-favorite-icon:hover {
+  fill: #ffeb3b; /* Gold color on hover */
+  transform: scale(1.2);
+}
+
+.aiGeminiTranslator_history-favorite-icon.favorited {
+  fill: #ffc107; /* Solid gold for favorited */
+}
+
+/* Custom Checkbox for "Select All" */
+.aiGeminiTranslator_select-all-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0; /* No gap as the label is gone */
+  flex-grow: 0; /* Don't grow */
+}
+
+.aiGeminiTranslator_history-checkbox-input {
+  all: unset; /* Hide original checkbox completely */
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.aiGeminiTranslator_custom-checkbox {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: #333;
+  border: 1px solid #666;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  pointer-events: none; /* Let clicks pass through to the real checkbox */
+}
+
+.aiGeminiTranslator_history-checkbox-input:checked ~ .aiGeminiTranslator_custom-checkbox::after {
+  content: "✓";
+  color: #bb86fc;
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.aiGeminiTranslator_history-checkbox-input:indeterminate ~ .aiGeminiTranslator_custom-checkbox::after {
+  content: "—"; /* Indeterminate state character */
+  color: #bb86fc;
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.aiGeminiTranslator_history-checkbox-input:hover ~ .aiGeminiTranslator_custom-checkbox {
+  border-color: #bb86fc;
+}
+
+/* Remove old label style */
+.aiGeminiTranslator_select-all-label {
+  display: none;
+}
 /*# sourceMappingURL=popup.css.map */
