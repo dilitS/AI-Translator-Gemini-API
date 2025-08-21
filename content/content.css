@@ -1,4 +1,7 @@
-.aiGeminiTranslator_translation-selected-text-icon {
+div.aiGeminiTranslator_translation-selected-text-icon {
+  all: initial; /* Reset all inherited styles */
+
+  /* Re-declare all necessary properties */
   position: absolute;
   cursor: pointer;
   z-index: 10000;
@@ -9,10 +12,12 @@
   font-family: "Roboto", sans-serif;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s ease-in-out;
+  animation: aiGeminiTranslator_pulse 1.5s infinite; /* Add pulsing animation */
 }
 
-.aiGeminiTranslator_translation-selected-text-icon:hover {
+div.aiGeminiTranslator_translation-selected-text-icon:hover {
   transform: scale(1.1);
+  animation-play-state: paused; /* Pause animation on hover for better interaction */
 }
 
 .aiGeminiTranslator_translation-selected-text-icon

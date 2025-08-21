@@ -988,25 +988,25 @@ body {
 
 .aiGeminiTranslator_delete-button {
   background-color: transparent;
-  border: 1px solid #8b3a3a;
+  border: none; /* Remove border */
   padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 28px;
   height: 28px;
+  border-radius: 4px; /* Add a slight radius for the hover effect */
 }
 
 .aiGeminiTranslator_delete-button:hover {
-  background-color: #8b3a3a;
+  background-color: #555; /* Use a neutral dark hover */
 }
 
 .aiGeminiTranslator_delete-button:hover .aiGeminiTranslator_delete-icon {
-  fill: #ffffff;
+  fill: #ff4444; /* Make icon red on hover */
 }
 
 .aiGeminiTranslator_delete-button:disabled {
-  border-color: #444;
   background-color: transparent;
 }
 
@@ -1046,4 +1046,63 @@ body {
   fill: #ffc107; /* Solid gold for favorited */
 }
 
+/* Custom Checkbox for "Select All" */
+.aiGeminiTranslator_select-all-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0; /* No gap as the label is gone */
+  flex-grow: 0; /* Don't grow */
+}
+
+.aiGeminiTranslator_history-checkbox-input {
+  all: unset; /* Hide original checkbox completely */
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.aiGeminiTranslator_custom-checkbox {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: #333;
+  border: 1px solid #666;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  pointer-events: none; /* Let clicks pass through to the real checkbox */
+}
+
+.aiGeminiTranslator_history-checkbox-input:checked ~ .aiGeminiTranslator_custom-checkbox::after {
+  content: "✓";
+  color: #bb86fc;
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.aiGeminiTranslator_history-checkbox-input:indeterminate ~ .aiGeminiTranslator_custom-checkbox::after {
+  content: "—"; /* Indeterminate state character */
+  color: #bb86fc;
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.aiGeminiTranslator_history-checkbox-input:hover ~ .aiGeminiTranslator_custom-checkbox {
+  border-color: #bb86fc;
+}
+
+/* Remove old label style */
+.aiGeminiTranslator_select-all-label {
+  display: none;
+}
 /*# sourceMappingURL=popup.css.map */
